@@ -6,20 +6,8 @@
 #include "../include/Interface.h"
 
 /*
-    Sezione codice di funzioni utili al caso
-
     autore: Leonardo Bertani 
 */
-
-int generaNumeroCasuale(){
-    return rand() % 6 + 1; // correzine dovuta al fatto che rand() restituisce un numero 0 a i-1
-}
-
-int lancioDadi(){
-    int dado1 = generaNumeroCasuale();
-    int dado2 = generaNumeroCasuale();
-    return dado1 + dado2; // come da richiesta restituisco la somma delle uscite dei 2 dadi
-}
 
 void show(/**/){}
     /* 
@@ -43,20 +31,6 @@ void stampaLiquiditaGiocatori(/**/){}
     /*
         funzione per stampa a schermo dell’ammontare di fiorini posseduto da tutti i giocatori
     */
-
-char ottieniInputChar(std::string testo){
-    char input;
-    std::cout << testo << " : ";
-    std::cin >> input;
-    return input;
-}
-
-std::string ottieniInputString(std::string testo){
-    std::string input;
-    std::cout << testo << " : ";
-    std::cin >> input;
-    return input;
-}
 
 int checkModalita(std::string modalita){
     if(modalita == "computer") return 0;

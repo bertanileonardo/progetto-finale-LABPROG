@@ -1,24 +1,6 @@
 /*
-    Sezione codice di funzioni utili al caso
-
     autore: Leonardo Bertani 
 */
-
-// funzioni utili nel gioco
-
-int generaNumeroCasuale(); 
-    /* 
-        genera numero random nell'intervallo [1,6]
-    */
-
-int lancioDadi(); 
-    /* 
-        funzione che restituisce il numero di posizioni di cui spostarsi, 
-       ovvero la somma del risultato del lancio di 2 dadi
-    */
-
-
-// gioco 
 
 void show(/**/);
     /* 
@@ -41,16 +23,6 @@ void stampaListaPossedimenti(/**/);
 void stampaLiquiditaGiocatori(/**/);
     /*
         funzione per stampa a schermo dell’ammontare di fiorini posseduto da tutti i giocatori
-    */
-
-char ottieniInputChar(std::string);
-    /*
-        funzione restituire un input richiesto, come char, se di un solo carattere
-    */
-
-std::string ottieniInputString(std::string);
-    /*
-        funzione restituire un input richiesto, come stringa
     */
 
 int checkModalita(std::string);

@@ -5,6 +5,9 @@
 #include <fstream>
 #include "../include/Interface.h" 
 
+/*
+    autore: Leonardo Bertani 
+*/
 
 int main(int argc, char** argv){
     std::string modalita = argv[1];
