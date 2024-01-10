@@ -9,7 +9,7 @@
 
 // Lista con i vari simboli associati al tipo delle caselle
 enum class TipoCasella{
-  ㅤ, // Casella ANGOLARE 'ㅤ' <-- Carattere Unicode U+3164
+  _U3164, // Casella ANGOLARE 'ㅤ' <-- Carattere Unicode U+3164
   P, // Casella PARTENZA
   E, // Casella ECONOMICA
   S, // Casella STANDARD
@@ -34,7 +34,7 @@ enum class Costo {
   PERNOTTAMENTO_ALBERGO_STANDARD = 8,
   PERNOTTAMENTO_ALBERGO_LUSSO = 14,
 };
-
+/*
 class Casella {
 
 public:
@@ -45,13 +45,22 @@ public:
 protected:
   const TipoCasella tipo;
 };
-
+*/
 // Classe derivata che rappresenta le caselle dove si può comprare (E, S, L) 
-class CasellaAcquistabile : public Casella {
+// class CasellaAcquistabile : public Casella {
+
+class CasellaAcquistabile{
+protected:
+  const TipoCasella tipo;
+
 
 public:
   // Costruttore della classe derivata
   CasellaAcquistabile(TipoCasella tipo);
+
+  TipoCasella getTipo() const;
+
+
 
   // Metodi per ottenere il costo di acquisto di una casella
   int getCostoTerrenoPerTipo() const;

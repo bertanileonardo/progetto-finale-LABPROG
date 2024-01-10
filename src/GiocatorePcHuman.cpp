@@ -3,17 +3,28 @@
 */
 
 #include "../include/GiocatorePcHuman.h"
+#include "../include/Pila.h"
 
 GiocatorePcHuman::GiocatorePcHuman(int id, bool mode)
-    : GiocatorePc(id), modalità_di_gioco{ mode } {}
+    : GiocatorePc(id), modalita_di_gioco{ mode } {}
 
 
-bool GiocatorePcHuman::getModalitàGioco()
-{   return modalità_di_gioco; }
+bool GiocatorePcHuman::getModalitaGioco()
+{   return modalita_di_gioco; }
+
+void GiocatorePcHuman::ControlloCasella(CasellaAcquistabile c)
+{
+    if( c.getTipo() == TipoCasella::_U3164 ) 
+        GiocatorePcHuman::CasellaAngolare();
+    if( c.getTipo() == TipoCasella::P )
+        GiocatorePcHuman::CasellaPartenza();
+    else
+        GiocatorePcHuman::CasellaLaterale(c);
+}
 
 void GiocatorePcHuman::CasellaLaterale(CasellaAcquistabile c)
 {
-    if( !(GiocatorePcHuman::getModalitàGioco()) )
+    if( !(GiocatorePcHuman::getModalitaGioco()) )
     {
         GiocatorePc::CasellaLaterale(c);    
     }
@@ -79,7 +90,7 @@ void GiocatorePcHuman::CasellaLaterale(CasellaAcquistabile c)
                 while( !(risposta!='N' || risposta!='n' || risposta!='S' || risposta!='s') );
                 
                 int prezzo = c.getCostoMiglioramentoAlbergoPerTipo();
-                if( (budg-prezzo)>=0 && GiocatorePcHuman::Probabilità() == 1 )
+                if( (budg-prezzo)>=0 && GiocatorePcHuman::Probabilita() == 1 )
                 {
                     // da aggiungere un setHasAlbergo
                     Giocatore::setBudget( budg - prezzo);
@@ -128,5 +139,36 @@ void GiocatorePcHuman::CasellaLaterale(CasellaAcquistabile c)
             */
         }
     }
+    }
+}
+
+void GiocatorePcHuman::CreazioneTurni()
+{
+    Pila p;
+    int turni[Pila::kDefaultNumeroGiocatori];
+    for(int i=0; i<Pila::kDefaultNumeroGiocatori; i++)
+    {
+        int n = Giocatore::lancioDadi();
+        if(i==0)
+        {
+            GiocatorePcHuman g(n, 1);
+            record gioc(&g, n);
+            record *giocPtr = &gioc;
+            p.push( giocPtr );
+        }
+        else
+        {
+            GiocatorePcHuman g(n, 0);
+            record gioc(&g, n);
+            record *giocPtr = &gioc;
+            p.push( giocPtr );
+        }
+    }
+
+    for(int i=1; i<=Pila::kDefaultNumeroGiocatori; i++)
+    {
+        int maxPos = p.findMaxPos(i,Pila::kDefaultNumeroGiocatori-1);
+        p.v[maxPos].g->setId(i);
+        p.v[maxPos].id = 0;
     }
 }

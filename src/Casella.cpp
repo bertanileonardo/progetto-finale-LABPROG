@@ -2,15 +2,15 @@
   autore Leonardo Gasparoni
 */
 
-#include "Casella.h"
-
+#include "../include/Casella.h"
+/*
 Casella::Casella(TipoCasella tipo) : tipo(tipo) {}
-
-TipoCasella Casella::getTipo() const {
+*/
+TipoCasella CasellaAcquistabile::getTipo() const {
   return tipo;
 }
 
-CasellaAcquistabile::CasellaAcquistabile(TipoCasella tipo) : Casella(tipo),
+CasellaAcquistabile::CasellaAcquistabile(TipoCasella tipo) : tipo(tipo),
   proprietario(0),
   numeroCase(0),
   venduta(false),
@@ -84,6 +84,7 @@ int CasellaAcquistabile::getCostoPernottamentoAlbergoPerTipo() const {
     case TipoCasella::S:
       return static_cast<int>(Costo::PERNOTTAMENTO_ALBERGO_STANDARD);
     case TipoCasella::L:
+      return static_cast<int>(Costo::PERNOTTAMENTO_ALBERGO_LUSSO);
   }
 }
 

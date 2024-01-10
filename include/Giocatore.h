@@ -5,7 +5,6 @@
 #ifndef GIOCATORE_H
 #define GIOCATORE_H
 
-#include "Interface.h"
 #include "Casella.h"
 
 /*
@@ -40,6 +39,17 @@ public:
     bool getStato();
     void setStato(bool s);
 
+    int generaNumeroCasuale(); 
+    /* 
+        genera numero random nell'intervallo [1,6]
+    */
+
+    int lancioDadi(); 
+    /* 
+        funzione che restituisce il numero di posizioni di cui spostarsi, 
+       ovvero la somma del risultato del lancio di 2 dadi
+    */
+
     // CLASSI ECCEZIONI
     class InvalidIdException{};
     
@@ -50,18 +60,16 @@ public:
     // Operatore di copia disabilitato
     Giocatore& operator=(const Giocatore& g) = delete;
 
-    // Definisce l'ordine di turno dei giocatori
-    void CreazioneTurni();
-
     // Controlla il tipo di casella e chiama le funzioni apposite in base ad esso
-    void ControlloCasella(CasellaAcquistabile c);
+    // void ControlloCasella(CasellaAcquistabile c);
+    
     // Funzioni basate sulla casella dove capita il giocatore
     // Casella Angolare --> non fa niente
     void CasellaAngolare();
     // Casella Partenza --> riscatta 20 fiorini
     void CasellaPartenza();
     // Casella Laterale --> varie opzioni, virtuale pura dal momento che abbiamo diversi comportamenti tra Pc e Human
-    virtual void CasellaLaterale(CasellaAcquistabile c) = 0;
+    virtual void CasellaLaterale(CasellaAcquistabile c) =0;
 
 };
 

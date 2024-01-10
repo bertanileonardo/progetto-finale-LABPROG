@@ -3,18 +3,30 @@
 */
 
 #include "../include/GiocatorePc.h"
+#include "../include/Pila.h"
+#include "../include/Interface.h"
 
 GiocatorePc::GiocatorePc(int id)
     : Giocatore(id){}
 
 // Estrazione con probabilità del 25%
-bool GiocatorePc::Probabilità()
+bool GiocatorePc::Probabilita()
 {
     int array[4] = {0, 1, 0, 0};
     int n = 3*rand();
     if( array[n] == 1)
         return 1;
     return 0;
+}
+
+void GiocatorePc::ControlloCasella(CasellaAcquistabile c)
+{
+    if( c.getTipo() == TipoCasella::_U3164 ) 
+        GiocatorePc::CasellaAngolare();
+    if( c.getTipo() == TipoCasella::P )
+        GiocatorePc::CasellaPartenza();
+    else
+        GiocatorePc::CasellaLaterale(c);
 }
 
 void GiocatorePc::CasellaLaterale(CasellaAcquistabile c)
@@ -24,7 +36,7 @@ void GiocatorePc::CasellaLaterale(CasellaAcquistabile c)
     if( !(c.isSold()) )
     {
         int prezzo = c.getCostoTerrenoPerTipo();
-        if( (budg-prezzo)>=0 && GiocatorePc::Probabilità() == 1 )
+        if( (budg-prezzo)>=0 && GiocatorePc::Probabilita() == 1 )
         {
             c.setProprietario(GiocatorePc::getId());
             c.setSold();
@@ -42,7 +54,7 @@ void GiocatorePc::CasellaLaterale(CasellaAcquistabile c)
             if( !(c.HasCasa()) )
             {
                 int prezzo = c.getCostoCasaPerTipo();
-                if( (budg-prezzo)>=0 && GiocatorePc::Probabilità() == 1 )
+                if( (budg-prezzo)>=0 && GiocatorePc::Probabilita() == 1 )
                 {
                     c.setHasCasa();
                     Giocatore::setBudget( budg - prezzo);
@@ -52,7 +64,7 @@ void GiocatorePc::CasellaLaterale(CasellaAcquistabile c)
             else // else if (c.HasCasa())
             {
                 int prezzo = c.getCostoMiglioramentoAlbergoPerTipo();
-                if( (budg-prezzo)>=0 && GiocatorePc::Probabilità() == 1 )
+                if( (budg-prezzo)>=0 && GiocatorePc::Probabilita() == 1 )
                 {
                     // da aggiungere un setHasAlbergo
                     Giocatore::setBudget( budg - prezzo);
@@ -101,4 +113,27 @@ void GiocatorePc::CasellaLaterale(CasellaAcquistabile c)
             */
         }
     }
+}
+
+void GiocatorePc::CreazioneTurni()
+{
+    Pila p;
+    int turni[Pila::kDefaultNumeroGiocatori];
+    for(int i=0; i<Pila::kDefaultNumeroGiocatori; i++)
+    {
+        int n = Giocatore::lancioDadi();
+        GiocatorePc g(n);
+        record gioc(&g, n);
+        record *giocPtr = &gioc;
+        p.push( giocPtr );
+    }
+
+    for(int i=1; i<=Pila::kDefaultNumeroGiocatori; i++)
+    {
+        int maxPos = p.findMaxPos(i,Pila::kDefaultNumeroGiocatori-1);
+        p.v[maxPos].g->setId(i);
+        p.v[maxPos].id = 0;
+    }
+
+
 }

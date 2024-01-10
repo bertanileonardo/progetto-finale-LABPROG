@@ -16,14 +16,18 @@ public:
     GiocatorePcHuman(int id, bool mode);
 
     // Get se Giocatore Pc o Human
-    bool getModalitàGioco();
+    bool getModalitaGioco();
     
     void CasellaLaterale(CasellaAcquistabile c);
+
+    void CreazioneTurni();
+
+    void ControlloCasella(CasellaAcquistabile c);
 
 
 private:
     // Giocatore Pc (0) o Human(1)
-    bool modalità_di_gioco;
+    bool modalita_di_gioco;
 
 };
 
