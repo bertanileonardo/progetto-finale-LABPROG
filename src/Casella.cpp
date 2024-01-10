@@ -1,11 +1,11 @@
+#include "../include/Casella.h"
+
 /*
   autore Leonardo Gasparoni
 */
 
-#include "../include/Casella.h"
-/*
-Casella::Casella(TipoCasella tipo) : tipo(tipo) {}
-*/
+// Casella::Casella(TipoCasella tipo) : tipo(tipo) {}
+
 TipoCasella CasellaAcquistabile::getTipo() const {
   return tipo;
 }
@@ -138,4 +138,3 @@ void CasellaAcquistabile::setHasCasa() {
     std::cout << "Tipo di casella non valido" << std::endl;
   }
 }
-

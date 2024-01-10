@@ -3,7 +3,11 @@
 #include <cstdlib>
 #include <string>
 #include <cstring>
-#include "../include/Interface.h"
+#include "../include/Interface.h" 
+#include "../include/Casella.h" 
+#include "../include/Giocatore.h" 
+#include "../include/GiocatorePc.h" 
+#include "../include/GiocatorePcHuman.h" 
 
 /*
     autore: Leonardo Bertani 

@@ -1,3 +1,6 @@
+#ifndef Interface_H
+#define Interface_H
+
 /*
     autore: Leonardo Bertani 
 */
@@ -35,3 +38,4 @@ void benvenuto(std::string);
         funzione restituire il messaggio di benvenuto
     */
 
+#endif //Interface_H
