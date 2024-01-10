@@ -4,13 +4,14 @@
   autore Leonardo Gasparoni
 */
 
-// Casella::Casella(TipoCasella tipo) : tipo(tipo) {}
 
-TipoCasella CasellaAcquistabile::getTipo() const {
+Casella::Casella(TipoCasella tipo) : tipo(tipo) {}
+
+TipoCasella Casella::getTipo() const {
   return tipo;
 }
 
-CasellaAcquistabile::CasellaAcquistabile(TipoCasella tipo) : tipo(tipo),
+CasellaAcquistabile::CasellaAcquistabile(TipoCasella tipo) : Casella(tipo),
   proprietario(0),
   numeroCase(0),
   venduta(false),
@@ -83,8 +84,7 @@ int CasellaAcquistabile::getCostoPernottamentoAlbergoPerTipo() const {
       return static_cast<int>(Costo::PERNOTTAMENTO_ALBERGO_ECONOMICO);
     case TipoCasella::S:
       return static_cast<int>(Costo::PERNOTTAMENTO_ALBERGO_STANDARD);
-    case TipoCasella::L:
-      return static_cast<int>(Costo::PERNOTTAMENTO_ALBERGO_LUSSO);
+    case TipoCasella::L: ;
   }
 }
 

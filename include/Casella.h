@@ -1,11 +1,11 @@
-/*
-  autore Leonardo Gasparoni
-*/
-
 #ifndef CASELLA_H
 #define CASELLA_H
 
 #include <iostream>
+
+/*
+  autore Leonardo Gasparoni
+*/
 
 // Lista con i vari simboli associati al tipo delle caselle
 enum class TipoCasella{
@@ -34,7 +34,7 @@ enum class Costo {
   PERNOTTAMENTO_ALBERGO_STANDARD = 8,
   PERNOTTAMENTO_ALBERGO_LUSSO = 14,
 };
-/*
+
 class Casella {
 
 public:
@@ -45,22 +45,13 @@ public:
 protected:
   const TipoCasella tipo;
 };
-*/
+
 // Classe derivata che rappresenta le caselle dove si può comprare (E, S, L) 
-// class CasellaAcquistabile : public Casella {
-
-class CasellaAcquistabile{
-protected:
-  const TipoCasella tipo;
-
+class CasellaAcquistabile : public Casella {
 
 public:
   // Costruttore della classe derivata
   CasellaAcquistabile(TipoCasella tipo);
-
-  TipoCasella getTipo() const;
-
-
 
   // Metodi per ottenere il costo di acquisto di una casella
   int getCostoTerrenoPerTipo() const;

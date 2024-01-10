@@ -38,7 +38,6 @@ int main(int argc, char** argv){
     // controllo dell'correttezza argomento e stampa della pagina di benvenuto
     benvenuto(modalita);
 
-    vector<Casella*> caselle;
 
 
     if (checkModalita(modalita) == 0 ){
