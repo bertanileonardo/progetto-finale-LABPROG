@@ -12,21 +12,21 @@ GiocatorePcHuman::GiocatorePcHuman(int id, bool mode)
 bool GiocatorePcHuman::getModalitaGioco()
 {   return modalita_di_gioco; }
 
-void GiocatorePcHuman::ControlloCasella(Casella c)
+void GiocatorePcHuman::controlloCasella(Casella c)
 {
     if( c.getTipo() == TipoCasella::_U3164 ) 
-        GiocatorePcHuman::CasellaAngolare();
+        GiocatorePcHuman::casellaAngolare();
     if( c.getTipo() == TipoCasella::P )
-        GiocatorePcHuman::CasellaPartenza();
+        GiocatorePcHuman::casellaPartenza();
     else
-        GiocatorePcHuman::CasellaLaterale(c);
+        GiocatorePcHuman::casellaLaterale(c);
 }
 
-void GiocatorePcHuman::CasellaLaterale(Casella c)
+void GiocatorePcHuman::casellaLaterale(Casella c)
 {
     if( !(GiocatorePcHuman::getModalitaGioco()) )
     {
-        GiocatorePc::CasellaLaterale(c);    
+        GiocatorePc::casellaLaterale(c);    
     }
     else
     {
@@ -61,7 +61,7 @@ void GiocatorePcHuman::CasellaLaterale(Casella c)
         if( c.getProprietario() == GiocatorePcHuman::getId() )
         {
             std::cout<<"Casella di tua proprietà, ";
-            if( !(c.haCasa()) )
+            if( !(c.hasCasa()) )
             {
                 char risposta;
                 do
@@ -79,7 +79,7 @@ void GiocatorePcHuman::CasellaLaterale(Casella c)
                 }
                 // else senza soldi
             }
-            else // else if (c.haCasa())
+            else // else if (c.hasCasa())
             {
                 char risposta;
                 do
@@ -90,7 +90,7 @@ void GiocatorePcHuman::CasellaLaterale(Casella c)
                 while( !(risposta!='N' || risposta!='n' || risposta!='S' || risposta!='s') );
                 
                 int prezzo = c.getCostoMiglioramentoAlbergoPerTipo();
-                if( (budg-prezzo)>=0 && GiocatorePcHuman::Probabilita() == 1 )
+                if( (budg-prezzo)>=0 && GiocatorePcHuman::probabilita() == 1 )
                 {
                     // da aggiungere un setHasAlbergo
                     Giocatore::setBudget( budg - prezzo);
@@ -102,7 +102,7 @@ void GiocatorePcHuman::CasellaLaterale(Casella c)
         // Di proprietà di un altro giocatore
         else
         {
-            if( !(c.haCasa()) )
+            if( !(c.hasCasa()) )
             {
                 int prezzo = c.getCostoTerrenoPerTipo();
                 if( (GiocatorePcHuman::getBudget() - prezzo)>=0 )
@@ -113,7 +113,7 @@ void GiocatorePcHuman::CasellaLaterale(Casella c)
                     Giocatore::setBudget(0);
                 }
             }
-            else // else if (c.haCasa())
+            else // else if (c.hasCasa())
             {
                 int prezzo = c.getCostoPernottamentoCasaPerTipo();
                 if( (GiocatorePcHuman::getBudget() - prezzo)>=0 )
@@ -142,7 +142,7 @@ void GiocatorePcHuman::CasellaLaterale(Casella c)
     }
 }
 
-void GiocatorePcHuman::CreazioneTurni()
+void GiocatorePcHuman::creazioneTurni()
 {
     Pila p;
     int turni[Pila::kDefaultNumeroGiocatori];

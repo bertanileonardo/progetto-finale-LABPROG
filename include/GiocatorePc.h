@@ -14,13 +14,13 @@ public:
     // COSTRUTTORE
     GiocatorePc(int id);
 
-    void CasellaLaterale(Casella c);
+    void casellaLaterale(Casella c);
 
-    bool Probabilita();
+    bool probabilita();
 
-    void CreazioneTurni();
+    void creazioneTurni();
 
-    void ControlloCasella(Casella c);
+    void controlloCasella(Casella c);
     
 };
 

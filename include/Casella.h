@@ -55,10 +55,10 @@ public:
   int getNumeroCase() const;
   bool isSold() const;
   void setSold();
-  bool haCasa() const;
-  void sethaCasa();
-  bool haAlbergo() const;
-  void setHaAlbergo();
+  bool hasCasa() const;
+  void setHasCasa();
+  bool hasAlbergo() const;
+  void setHasAlbergo();
 
 protected:
   const TipoCasella tipo;

@@ -39,9 +39,9 @@ int Giocatore::lancioDadi(){
     return dado1 + dado2; // come da richiesta restituisco la somma delle uscite dei 2 dadi
 }
 
-void Giocatore::CasellaAngolare()
+void Giocatore::casellaAngolare()
 {}
-void Giocatore::CasellaPartenza()
+void Giocatore::casellaPartenza()
 {
     setBudget(Giocatore::budget_giocatore_ + 20);
 }

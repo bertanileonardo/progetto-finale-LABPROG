@@ -22,7 +22,7 @@ bool GiocatorePc::probabilita()
 void GiocatorePc::controlloCasella(Casella c)
 {
     if( c.getTipo() == TipoCasella::_U3164 ) 
-        GiocatorePc::c\asellaAngolare();
+        GiocatorePc::casellaAngolare();
     if( c.getTipo() == TipoCasella::P )
         GiocatorePc::casellaPartenza();
     else
@@ -36,7 +36,7 @@ void GiocatorePc::casellaLaterale(Casella c)
     if( !(c.isSold()) )
     {
         int prezzo = c.getCostoTerrenoPerTipo();
-        if( (budg-prezzo)>=0 && GiocatorePc::Probabilita() == 1 )
+        if( (budg-prezzo)>=0 && GiocatorePc::probabilita() == 1 )
         {
             c.setProprietario(GiocatorePc::getId());
             c.setSold();
@@ -51,20 +51,20 @@ void GiocatorePc::casellaLaterale(Casella c)
         // Di proprietà del giocatore in turno
         if( c.getProprietario() == GiocatorePc::getId() )
         {
-            if( !(c.haCasa()) )
+            if( !(c.hasCasa()) )
             {
                 int prezzo = c.getCostoCasaPerTipo();
-                if( (budg-prezzo)>=0 && GiocatorePc::Probabilita() == 1 )
+                if( (budg-prezzo)>=0 && GiocatorePc::probabilita() == 1 )
                 {
                     c.setHasCasa();
                     Giocatore::setBudget( budg - prezzo);
 
                 }
             }
-            else // else if (c.haCasa())
+            else // else if (c.hasCasa())
             {
                 int prezzo = c.getCostoMiglioramentoAlbergoPerTipo();
-                if( (budg-prezzo)>=0 && GiocatorePc::Probabilita() == 1 )
+                if( (budg-prezzo)>=0 && GiocatorePc::probabilita() == 1 )
                 {
                     // da aggiungere un setHasAlbergo
                     Giocatore::setBudget( budg - prezzo);
@@ -76,7 +76,7 @@ void GiocatorePc::casellaLaterale(Casella c)
         // Di proprietà di un altro giocatore
         else
         {
-            if( !(c.haCasa()) )
+            if( !(c.hasCasa()) )
             {
                 int prezzo = c.getCostoTerrenoPerTipo();
                 if( (GiocatorePc::getBudget() - prezzo)>=0 )
@@ -87,7 +87,7 @@ void GiocatorePc::casellaLaterale(Casella c)
                     Giocatore::setBudget(0);
                 }
             }
-            else // else if (c.haCasa())
+            else // else if (c.hasCasa())
             {
                 int prezzo = c.getCostoPernottamentoCasaPerTipo();
                 if( (GiocatorePc::getBudget() - prezzo)>=0 )
@@ -115,7 +115,7 @@ void GiocatorePc::casellaLaterale(Casella c)
     }
 }
 
-void GiocatorePc::CreazioneTurni()
+void GiocatorePc::creazioneTurni()
 {
     Pila p;
     int turni[Pila::kDefaultNumeroGiocatori];

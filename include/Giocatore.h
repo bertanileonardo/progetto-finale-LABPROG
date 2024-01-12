@@ -65,11 +65,11 @@ public:
     
     // Funzioni basate sulla casella dove capita il giocatore
     // Casella Angolare --> non fa niente
-    void CasellaAngolare();
+    void casellaAngolare();
     // Casella Partenza --> riscatta 20 fiorini
-    void CasellaPartenza();
+    void casellaPartenza();
     // Casella Laterale --> varie opzioni, virtuale pura dal momento che abbiamo diversi comportamenti tra Pc e Human
-    virtual void CasellaLaterale(Casella c) =0;
+    virtual void casellaLaterale(Casella c) =0;
 
 };
 

@@ -121,14 +121,14 @@ void Casella::setSold() {
   }
 }
 
-bool Casella::haCasa() const {
+bool Casella::hasCasa() const {
   if (tipo == TipoCasella::E || tipo == TipoCasella::S || tipo == TipoCasella::L) {
     return haCasa;
   }
   return false;
 }
 
-void Casella::sethaCasa() {
+void Casella::setHasCasa() {
   if (tipo == TipoCasella::E || tipo == TipoCasella::S || tipo == TipoCasella::L) {
     haCasa = true;
   } else {
@@ -136,14 +136,14 @@ void Casella::sethaCasa() {
   }
 }
 
-bool Casella::haAlbergo() const {
+bool Casella::hasAlbergo() const {
   if (tipo == TipoCasella::E || tipo == TipoCasella::S || tipo == TipoCasella::L) {
     return haAlbergo;
   }
   return false;
 }
 
-void Casella::setHaAlbergo() {
+void Casella::setHasAlbergo() {
   if (tipo == TipoCasella::E || tipo == TipoCasella::S || tipo == TipoCasella::L) {
     haAlbergo = true;
   } else {
