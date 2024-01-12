@@ -38,12 +38,10 @@ int main(int argc, char** argv){
     // controllo dell'correttezza argomento e stampa della pagina di benvenuto
     benvenuto(modalita);
 
-
-
-    if (checkModalita(modalita) == 0 ){
+    if (checkModalita(modalita) == 0 ){ // modalita computer
         std::cout << "ss";
     }
-    else{
+    else{                               // modalita human
         std::cout << "s";
     }
     

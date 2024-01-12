@@ -4,11 +4,7 @@
   autore Leonardo Gasparoni
 */
 
-TipoCasella Casella::getTipo() const {
-  return tipo;
-}
-
-Casella::Casella(TipoCasella tipo) : Casella(tipo),
+Casella::Casella(TipoCasella tipo) : tipo(tipo),
   proprietario(0),
   numeroCase(0),
   venduta(false),
@@ -31,6 +27,10 @@ int Casella::getCostoTerrenoPerTipo() const {
       std::cout << "Tipo di casella non valido" << std::endl;
   }
   return 0;
+}
+
+TipoCasella Casella::getTipo() const {
+  return tipo;
 }
 
 int Casella::getCostoCasaPerTipo() const {
@@ -121,16 +121,31 @@ void Casella::setSold() {
   }
 }
 
-bool Casella::HasCasa() const {
+bool Casella::haCasa() const {
   if (tipo == TipoCasella::E || tipo == TipoCasella::S || tipo == TipoCasella::L) {
     return haCasa;
   }
   return false;
 }
 
-void Casella::setHasCasa() {
+void Casella::sethaCasa() {
   if (tipo == TipoCasella::E || tipo == TipoCasella::S || tipo == TipoCasella::L) {
     haCasa = true;
+  } else {
+    std::cout << "Tipo di casella non valido" << std::endl;
+  }
+}
+
+bool Casella::haAlbergo() const {
+  if (tipo == TipoCasella::E || tipo == TipoCasella::S || tipo == TipoCasella::L) {
+    return haAlbergo;
+  }
+  return false;
+}
+
+void Casella::setHaAlbergo() {
+  if (tipo == TipoCasella::E || tipo == TipoCasella::S || tipo == TipoCasella::L) {
+    haAlbergo = true;
   } else {
     std::cout << "Tipo di casella non valido" << std::endl;
   }

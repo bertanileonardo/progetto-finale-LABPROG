@@ -18,11 +18,11 @@ public:
     // Get se Giocatore Pc o Human
     bool getModalitaGioco();
     
-    void CasellaLaterale(CasellaAcquistabile c);
+    void CasellaLaterale(Casella c);
 
     void CreazioneTurni();
 
-    void ControlloCasella(CasellaAcquistabile c);
+    void ControlloCasella(Casella c);
 
 
 private:

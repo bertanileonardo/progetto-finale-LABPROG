@@ -10,7 +10,7 @@ GiocatorePc::GiocatorePc(int id)
     : Giocatore(id){}
 
 // Estrazione con probabilità del 25%
-bool GiocatorePc::Probabilita()
+bool GiocatorePc::probabilita()
 {
     int array[4] = {0, 1, 0, 0};
     int n = 3*rand();
@@ -19,17 +19,17 @@ bool GiocatorePc::Probabilita()
     return 0;
 }
 
-void GiocatorePc::ControlloCasella(CasellaAcquistabile c)
+void GiocatorePc::controlloCasella(Casella c)
 {
     if( c.getTipo() == TipoCasella::_U3164 ) 
-        GiocatorePc::CasellaAngolare();
+        GiocatorePc::c\asellaAngolare();
     if( c.getTipo() == TipoCasella::P )
-        GiocatorePc::CasellaPartenza();
+        GiocatorePc::casellaPartenza();
     else
-        GiocatorePc::CasellaLaterale(c);
+        GiocatorePc::casellaLaterale(c);
 }
 
-void GiocatorePc::CasellaLaterale(CasellaAcquistabile c)
+void GiocatorePc::casellaLaterale(Casella c)
 {
     int budg = GiocatorePc::getBudget();
     // Casella senza proprietario
@@ -51,7 +51,7 @@ void GiocatorePc::CasellaLaterale(CasellaAcquistabile c)
         // Di proprietà del giocatore in turno
         if( c.getProprietario() == GiocatorePc::getId() )
         {
-            if( !(c.HasCasa()) )
+            if( !(c.haCasa()) )
             {
                 int prezzo = c.getCostoCasaPerTipo();
                 if( (budg-prezzo)>=0 && GiocatorePc::Probabilita() == 1 )
@@ -61,7 +61,7 @@ void GiocatorePc::CasellaLaterale(CasellaAcquistabile c)
 
                 }
             }
-            else // else if (c.HasCasa())
+            else // else if (c.haCasa())
             {
                 int prezzo = c.getCostoMiglioramentoAlbergoPerTipo();
                 if( (budg-prezzo)>=0 && GiocatorePc::Probabilita() == 1 )
@@ -76,7 +76,7 @@ void GiocatorePc::CasellaLaterale(CasellaAcquistabile c)
         // Di proprietà di un altro giocatore
         else
         {
-            if( !(c.HasCasa()) )
+            if( !(c.haCasa()) )
             {
                 int prezzo = c.getCostoTerrenoPerTipo();
                 if( (GiocatorePc::getBudget() - prezzo)>=0 )
@@ -87,7 +87,7 @@ void GiocatorePc::CasellaLaterale(CasellaAcquistabile c)
                     Giocatore::setBudget(0);
                 }
             }
-            else // else if (c.HasCasa())
+            else // else if (c.haCasa())
             {
                 int prezzo = c.getCostoPernottamentoCasaPerTipo();
                 if( (GiocatorePc::getBudget() - prezzo)>=0 )

@@ -42,17 +42,6 @@ public:
   Casella(TipoCasella tipo);
   TipoCasella getTipo() const;
 
-protected:
-  const TipoCasella tipo;
-};
-
-// Classe derivata che rappresenta le caselle dove si può comprare (E, S, L) 
-class Casella : public Casella {
-
-public:
-  // Costruttore della classe derivata
-  Casella(TipoCasella tipo);
-
   // Metodi per ottenere il costo di acquisto di una casella
   int getCostoTerrenoPerTipo() const;
   int getCostoCasaPerTipo() const;
@@ -66,14 +55,20 @@ public:
   int getNumeroCase() const;
   bool isSold() const;
   void setSold();
-  bool HasCasa() const;
-  void setHasCasa();
+  bool haCasa() const;
+  void sethaCasa();
+  bool haAlbergo() const;
+  void setHaAlbergo();
+
+protected:
+  const TipoCasella tipo;
 
 private:
   int proprietario;
   int numeroCase;
   bool venduta;
   bool haCasa;
+  bool haAlbergo;
   const int ACQUISTO_TERRENO;
   const int ACQUISTO_CASA;
   const int MIGLIORAMENTO_ALBERGO;

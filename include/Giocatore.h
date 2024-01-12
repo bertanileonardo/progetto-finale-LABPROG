@@ -61,7 +61,7 @@ public:
     Giocatore& operator=(const Giocatore& g) = delete;
 
     // Controlla il tipo di casella e chiama le funzioni apposite in base ad esso
-    // void ControlloCasella(CasellaAcquistabile c);
+    // void ControlloCasella(Casella c);
     
     // Funzioni basate sulla casella dove capita il giocatore
     // Casella Angolare --> non fa niente
@@ -69,7 +69,7 @@ public:
     // Casella Partenza --> riscatta 20 fiorini
     void CasellaPartenza();
     // Casella Laterale --> varie opzioni, virtuale pura dal momento che abbiamo diversi comportamenti tra Pc e Human
-    virtual void CasellaLaterale(CasellaAcquistabile c) =0;
+    virtual void CasellaLaterale(Casella c) =0;
 
 };
 

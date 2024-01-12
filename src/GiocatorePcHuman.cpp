@@ -12,7 +12,7 @@ GiocatorePcHuman::GiocatorePcHuman(int id, bool mode)
 bool GiocatorePcHuman::getModalitaGioco()
 {   return modalita_di_gioco; }
 
-void GiocatorePcHuman::ControlloCasella(CasellaAcquistabile c)
+void GiocatorePcHuman::ControlloCasella(Casella c)
 {
     if( c.getTipo() == TipoCasella::_U3164 ) 
         GiocatorePcHuman::CasellaAngolare();
@@ -22,7 +22,7 @@ void GiocatorePcHuman::ControlloCasella(CasellaAcquistabile c)
         GiocatorePcHuman::CasellaLaterale(c);
 }
 
-void GiocatorePcHuman::CasellaLaterale(CasellaAcquistabile c)
+void GiocatorePcHuman::CasellaLaterale(Casella c)
 {
     if( !(GiocatorePcHuman::getModalitaGioco()) )
     {
@@ -61,7 +61,7 @@ void GiocatorePcHuman::CasellaLaterale(CasellaAcquistabile c)
         if( c.getProprietario() == GiocatorePcHuman::getId() )
         {
             std::cout<<"Casella di tua proprietà, ";
-            if( !(c.HasCasa()) )
+            if( !(c.haCasa()) )
             {
                 char risposta;
                 do
@@ -79,7 +79,7 @@ void GiocatorePcHuman::CasellaLaterale(CasellaAcquistabile c)
                 }
                 // else senza soldi
             }
-            else // else if (c.HasCasa())
+            else // else if (c.haCasa())
             {
                 char risposta;
                 do
@@ -102,7 +102,7 @@ void GiocatorePcHuman::CasellaLaterale(CasellaAcquistabile c)
         // Di proprietà di un altro giocatore
         else
         {
-            if( !(c.HasCasa()) )
+            if( !(c.haCasa()) )
             {
                 int prezzo = c.getCostoTerrenoPerTipo();
                 if( (GiocatorePcHuman::getBudget() - prezzo)>=0 )
@@ -113,7 +113,7 @@ void GiocatorePcHuman::CasellaLaterale(CasellaAcquistabile c)
                     Giocatore::setBudget(0);
                 }
             }
-            else // else if (c.HasCasa())
+            else // else if (c.haCasa())
             {
                 int prezzo = c.getCostoPernottamentoCasaPerTipo();
                 if( (GiocatorePcHuman::getBudget() - prezzo)>=0 )

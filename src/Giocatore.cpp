@@ -47,7 +47,7 @@ void Giocatore::CasellaPartenza()
 }
 
 /*
-void Giocatore::ControlloCasella(CasellaAcquistabile c)
+void Giocatore::ControlloCasella(Casella c)
 {
     if( c.getTipo() == TipoCasella::_U3164 ) 
         Giocatore::CasellaAngolare();
