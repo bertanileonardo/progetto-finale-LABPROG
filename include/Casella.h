@@ -47,11 +47,11 @@ protected:
 };
 
 // Classe derivata che rappresenta le caselle dove si può comprare (E, S, L) 
-class CasellaAcquistabile : public Casella {
+class Casella : public Casella {
 
 public:
   // Costruttore della classe derivata
-  CasellaAcquistabile(TipoCasella tipo);
+  Casella(TipoCasella tipo);
 
   // Metodi per ottenere il costo di acquisto di una casella
   int getCostoTerrenoPerTipo() const;

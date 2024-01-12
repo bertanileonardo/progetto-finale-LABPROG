@@ -4,14 +4,11 @@
   autore Leonardo Gasparoni
 */
 
-
-Casella::Casella(TipoCasella tipo) : tipo(tipo) {}
-
 TipoCasella Casella::getTipo() const {
   return tipo;
 }
 
-CasellaAcquistabile::CasellaAcquistabile(TipoCasella tipo) : Casella(tipo),
+Casella::Casella(TipoCasella tipo) : Casella(tipo),
   proprietario(0),
   numeroCase(0),
   venduta(false),
@@ -22,7 +19,7 @@ CasellaAcquistabile::CasellaAcquistabile(TipoCasella tipo) : Casella(tipo),
   PERNOTTAMENTO_CASA(getCostoPernottamentoCasaPerTipo()),
   PERNOTTAMENTO_ALBERGO(getCostoPernottamentoAlbergoPerTipo()) {}
 
-int CasellaAcquistabile::getCostoTerrenoPerTipo() const {
+int Casella::getCostoTerrenoPerTipo() const {
   switch (tipo) {
     case TipoCasella::E:
       return static_cast<int>(Costo::TERRENO_ECONOMICO);
@@ -36,7 +33,7 @@ int CasellaAcquistabile::getCostoTerrenoPerTipo() const {
   return 0;
 }
 
-int CasellaAcquistabile::getCostoCasaPerTipo() const {
+int Casella::getCostoCasaPerTipo() const {
   switch (tipo) {
     case TipoCasella::E:
       return static_cast<int>(Costo::CASA_ECONOMICA);
@@ -50,7 +47,7 @@ int CasellaAcquistabile::getCostoCasaPerTipo() const {
   return 0;
 }
 
-int CasellaAcquistabile::getCostoMiglioramentoAlbergoPerTipo() const {
+int Casella::getCostoMiglioramentoAlbergoPerTipo() const {
   switch (tipo) {
     case TipoCasella::E:
       return static_cast<int>(Costo::MIGLIORAMENTO_ALBERGO_ECONOMICO);
@@ -64,7 +61,7 @@ int CasellaAcquistabile::getCostoMiglioramentoAlbergoPerTipo() const {
   return 0;
 }
 
-int CasellaAcquistabile::getCostoPernottamentoCasaPerTipo() const {
+int Casella::getCostoPernottamentoCasaPerTipo() const {
   switch (tipo) {
     case TipoCasella::E:
       return static_cast<int>(Costo::PERNOTTAMENTO_CASA_ECONOMICA);
@@ -78,7 +75,7 @@ int CasellaAcquistabile::getCostoPernottamentoCasaPerTipo() const {
   return 0;
 }
 
-int CasellaAcquistabile::getCostoPernottamentoAlbergoPerTipo() const {
+int Casella::getCostoPernottamentoAlbergoPerTipo() const {
   switch (tipo) {
     case TipoCasella::E:
       return static_cast<int>(Costo::PERNOTTAMENTO_ALBERGO_ECONOMICO);
@@ -88,13 +85,13 @@ int CasellaAcquistabile::getCostoPernottamentoAlbergoPerTipo() const {
   }
 }
 
-int CasellaAcquistabile::getProprietario() const {
+int Casella::getProprietario() const {
   if (tipo == TipoCasella::E || tipo == TipoCasella::S || tipo == TipoCasella::L)
     return proprietario;
   return -1;
 }
 
-void CasellaAcquistabile::setProprietario(int proprietario) {
+void Casella::setProprietario(int proprietario) {
   if (tipo == TipoCasella::E || tipo == TipoCasella::S || tipo == TipoCasella::L) {
     this->proprietario = proprietario;
   } else {
@@ -102,21 +99,21 @@ void CasellaAcquistabile::setProprietario(int proprietario) {
   }
 }
 
-int CasellaAcquistabile::getNumeroCase() const {
+int Casella::getNumeroCase() const {
   if (tipo == TipoCasella::E || tipo == TipoCasella::S || tipo == TipoCasella::L) {
     return numeroCase;
   }
   return -1;
 }
 
-bool CasellaAcquistabile::isSold() const {
+bool Casella::isSold() const {
   if (tipo == TipoCasella::E || tipo == TipoCasella::S || tipo == TipoCasella::L) {
     return venduta;
   }
   return false;
 }
 
-void CasellaAcquistabile::setSold() {
+void Casella::setSold() {
   if (tipo == TipoCasella::E || tipo == TipoCasella::S || tipo == TipoCasella::L) {
     venduta = true;
   } else {
@@ -124,14 +121,14 @@ void CasellaAcquistabile::setSold() {
   }
 }
 
-bool CasellaAcquistabile::HasCasa() const {
+bool Casella::HasCasa() const {
   if (tipo == TipoCasella::E || tipo == TipoCasella::S || tipo == TipoCasella::L) {
     return haCasa;
   }
   return false;
 }
 
-void CasellaAcquistabile::setHasCasa() {
+void Casella::setHasCasa() {
   if (tipo == TipoCasella::E || tipo == TipoCasella::S || tipo == TipoCasella::L) {
     haCasa = true;
   } else {
