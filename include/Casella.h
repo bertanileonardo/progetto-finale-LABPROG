@@ -35,7 +35,7 @@ enum class Costo {
   PERNOTTAMENTO_ALBERGO_LUSSO = 14,
 };
 
-enum class CoordX {
+enum class CoordY {
   A,
   B,
   C,
@@ -48,11 +48,11 @@ enum class CoordX {
 
 struct posizione
 {
-  char x;
-  int y;
+  int x;
+  char y;
 
   posizione()
-    : x{' '}, y(0) {}
+    : x{0}, y{' '} {}
 };
 
 
@@ -73,8 +73,8 @@ public:
   // Metodi getter, setter e booleani definiti in-class
   int getProprietario() const;
   void setProprietario(int proprietario);
-  void setCoordX(char x);
-  void setCoordY(int y);
+  void setCoordX(int x);
+  void setCoordY(char y);
   bool isSold() const;
   void setSold();
   bool hasCasa() const;

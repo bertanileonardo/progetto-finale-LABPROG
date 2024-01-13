@@ -1,0 +1,3 @@
+/home/bertaleo/progetto-finale-LABPROG/CMakeFiles/a.dir
+/home/bertaleo/progetto-finale-LABPROG/CMakeFiles/edit_cache.dir
+/home/bertaleo/progetto-finale-LABPROG/CMakeFiles/rebuild_cache.dir

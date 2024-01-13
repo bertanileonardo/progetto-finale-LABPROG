@@ -103,32 +103,32 @@ std::vector<Casella*> creazioneCaselle()
     
     for(int i=0; i<28; i++)
     {
-        // Set Posizione coordinata X
+        // Set Posizione coordinata Y
         switch (i)
         {
         case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:     // provato con case 0 ... 7: ma mi dava errore in compilazione
-            caselle[i]->setCoordX('H');
+            caselle[i]->setCoordY('H');
             break;
         case 8: case 27:
-            caselle[i]->setCoordX('G');
+            caselle[i]->setCoordY('G');
             break;
         case 9: case 26:
-            caselle[i]->setCoordX('F');
+            caselle[i]->setCoordY('F');
             break;
         case 10: case 25:
-            caselle[i]->setCoordX('E');
+            caselle[i]->setCoordY('E');
             break;
         case 11: case 24:
-            caselle[i]->setCoordX('D');
+            caselle[i]->setCoordY('D');
             break;
         case 12: case 23:
-            caselle[i]->setCoordX('C');
+            caselle[i]->setCoordY('C');
             break;
         case 13: case 22:
-            caselle[i]->setCoordX('B');
+            caselle[i]->setCoordY('B');
             break;
         default:
-            caselle[i]->setCoordX('A');
+            caselle[i]->setCoordY('A');
             break;
         }
 
@@ -136,28 +136,28 @@ std::vector<Casella*> creazioneCaselle()
         switch (i)
         {
         case 0: case 21: case 22: case 23: case 24: case 25: case 26: case 27:      // provato con case 0: case 21 ... 27: ma mi dava errore in compilazione
-            caselle[i]->setCoordY(8);
+            caselle[i]->setCoordX(8);
             break;
         case 1: case 20:
-            caselle[i]->setCoordY(7);
+            caselle[i]->setCoordX(7);
             break;
         case 2: case 19:
-            caselle[i]->setCoordY(6);
+            caselle[i]->setCoordX(6);
             break;
         case 3: case 18:
-            caselle[i]->setCoordY(5);
+            caselle[i]->setCoordX(5);
             break;
         case 4: case 17:
-            caselle[i]->setCoordY(4);
+            caselle[i]->setCoordX(4);
             break;
         case 5: case 16:
-            caselle[i]->setCoordY(3);
+            caselle[i]->setCoordX(3);
             break;
         case 6: case 15:
-            caselle[i]->setCoordY(2);
+            caselle[i]->setCoordX(2);
             break;
         default:
-            caselle[i]->setCoordY(1);
+            caselle[i]->setCoordX(1);
             break;
         }
     }

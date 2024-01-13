@@ -1,0 +1,1 @@
+/usr/bin/c++ -rdynamic CMakeFiles/a.dir/src/Interface.cpp.o CMakeFiles/a.dir/src/Casella.cpp.o CMakeFiles/a.dir/src/Giocatore.cpp.o CMakeFiles/a.dir/src/main.cpp.o -o a 

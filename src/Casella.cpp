@@ -102,12 +102,12 @@ void Casella::setProprietario(int proprietario) {
   }
 }
 
-void Casella::setCoordX(char x)
+void Casella::setCoordX(int x)
 {
   pos.x = x;
 }
 
-void Casella::setCoordY(int y)
+void Casella::setCoordY(char y)
 {
   pos.y = y;
 }
