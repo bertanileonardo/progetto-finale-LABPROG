@@ -36,11 +36,13 @@ int main(int argc, char** argv){
     // controllo dell'correttezza argomento e stampa della pagina di benvenuto
     benvenuto(modalita);
 
-    //std::vector<Giocatore*> giocatori = creazioneTurni(checkModalita(modalita));
+    std::vector<Giocatore*> giocatori = creazioneTurni(checkModalita(modalita));
 
-    //std::vector<Casella*> casella = creazioneCaselle();
+    std::vector<Casella*> casella = creazioneCaselle();
 
-    stampaTabellone();
+    //stampaTabellone();
+    std::string s="";
+    std::cout<<s+casella[0]->toString(giocatori[0]);
     
     std::cout << std::endl << std::endl;
 
