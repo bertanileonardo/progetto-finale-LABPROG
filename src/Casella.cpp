@@ -102,6 +102,11 @@ void Casella::setProprietario(int proprietario) {
   }
 }
 
+posizione Casella::getPosizione()
+{
+  return pos;
+}
+
 void Casella::setCoordX(int x)
 {
   pos.x = x;
@@ -155,4 +160,15 @@ void Casella::setHasAlbergo() {
   } else {
     std::cout << "Tipo di casella non valido" << std::endl;
   }
+}
+
+std::string Casella::toString(Giocatore* g)
+{
+  std::string s = ""+static_cast<char>(Casella::getTipo());
+  if(Casella::hasCasa())
+    s+="*";
+  else if(Casella::hasAlbergo())
+    s+="^";
+  if(Casella::getPosizione().x == g->getPosizione().x && Casella::getPosizione().y == g->getPosizione().y )
+    s+=g->getId();
 }

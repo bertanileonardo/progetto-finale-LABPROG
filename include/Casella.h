@@ -2,6 +2,8 @@
 #define CASELLA_H
 
 #include <iostream>
+#include <string>
+#include "Giocatore.h"
 
 /*
   autore Leonardo Gasparoni
@@ -52,7 +54,7 @@ struct posizione
   char y;
 
   posizione()
-    : x{0}, y{' '} {}
+    : x{8}, y{'H'} {}
 };
 
 
@@ -73,6 +75,7 @@ public:
   // Metodi getter, setter e booleani definiti in-class
   int getProprietario() const;
   void setProprietario(int proprietario);
+  posizione getPosizione();
   void setCoordX(int x);
   void setCoordY(char y);
   bool isSold() const;
@@ -81,6 +84,8 @@ public:
   void setHasCasa();
   bool hasAlbergo() const;
   void setHasAlbergo();
+
+  std::string toString(Giocatore* g);
 
 protected:
   const TipoCasella tipo;
