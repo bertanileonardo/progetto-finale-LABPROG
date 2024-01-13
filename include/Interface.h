@@ -5,6 +5,11 @@
     autore: Leonardo Bertani 
 */
 
+#include "Casella.h"
+
+// va bene qua?
+constexpr static int kDefaultNumeroGiocatori = 4;
+
 void show(/**/);
     /* 
         funzione per visualizzare il menù di gioco
@@ -12,6 +17,8 @@ void show(/**/);
         - visualizza lista terreni/case/alberghi posseduti da ogni giocatore
         - visualizza l’ammontare di fiorini posseduto da tutti i giocatori
     */
+
+
 
 void stampaTabellone(/**/); 
     /*
@@ -27,6 +34,9 @@ void stampaLiquiditaGiocatori(/**/);
     /*
         funzione per stampa a schermo dell’ammontare di fiorini posseduto da tutti i giocatori
     */
+
+std::vector<Casella*> creazioneCaselle();
+
 
 int checkModalita(std::string);
     /*

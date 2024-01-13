@@ -6,8 +6,5 @@ add_executable(a
     src/Interface.cpp
     src/Casella.cpp
     src/Giocatore.cpp
-    src/GiocatorePc.cpp
-    src/GiocatorePcHuman.cpp
-    src/Pila.cpp
     src/main.cpp 
 )

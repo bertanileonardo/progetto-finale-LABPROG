@@ -6,7 +6,6 @@
 
 Casella::Casella(TipoCasella tipo) : tipo(tipo),
   proprietario(0),
-  numeroCase(0),
   venduta(false),
   haCasa(false),
   ACQUISTO_TERRENO(getCostoTerrenoPerTipo()),
@@ -24,7 +23,8 @@ int Casella::getCostoTerrenoPerTipo() const {
     case TipoCasella::L:
       return static_cast<int>(Costo::TERRENO_LUSSO);
     default:
-      std::cout << "Tipo di casella non valido" << std::endl;
+      return 0;
+      //std::cout << "Tipo di casella non valido" << std::endl;
   }
   return 0;
 }
@@ -42,7 +42,7 @@ int Casella::getCostoCasaPerTipo() const {
     case TipoCasella::L:
       return static_cast<int>(Costo::CASA_LUSSO);
     default:
-      std::cout << "Tipo di casella non valido" << std::endl;
+      return 0;
   }
   return 0;
 }
@@ -56,7 +56,7 @@ int Casella::getCostoMiglioramentoAlbergoPerTipo() const {
     case TipoCasella::L:
       return static_cast<int>(Costo::MIGLIORAMENTO_ALBERGO_LUSSO);
     default:
-      std::cout << "Tipo di casella non valido" << std::endl;
+      return 0;
   }
   return 0;
 }
@@ -70,7 +70,7 @@ int Casella::getCostoPernottamentoCasaPerTipo() const {
     case TipoCasella::L:
       return static_cast<int>(Costo::PERNOTTAMENTO_CASA_LUSSO);
     default:
-      std::cout << "Tipo di casella non valido" << std::endl;
+      return 0;
   }
   return 0;
 }
@@ -81,7 +81,10 @@ int Casella::getCostoPernottamentoAlbergoPerTipo() const {
       return static_cast<int>(Costo::PERNOTTAMENTO_ALBERGO_ECONOMICO);
     case TipoCasella::S:
       return static_cast<int>(Costo::PERNOTTAMENTO_ALBERGO_STANDARD);
-    case TipoCasella::L: ;
+    case TipoCasella::L:
+      return static_cast<int>(Costo::PERNOTTAMENTO_ALBERGO_LUSSO);
+    default:
+      return 0;
   }
 }
 
@@ -99,11 +102,14 @@ void Casella::setProprietario(int proprietario) {
   }
 }
 
-int Casella::getNumeroCase() const {
-  if (tipo == TipoCasella::E || tipo == TipoCasella::S || tipo == TipoCasella::L) {
-    return numeroCase;
-  }
-  return -1;
+void Casella::setCoordX(char x)
+{
+  pos.x = x;
+}
+
+void Casella::setCoordY(int y)
+{
+  pos.y = y;
 }
 
 bool Casella::isSold() const {

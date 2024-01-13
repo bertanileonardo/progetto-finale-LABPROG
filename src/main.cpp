@@ -6,8 +6,6 @@
 #include "../include/Interface.h" 
 #include "../include/Casella.h" 
 #include "../include/Giocatore.h" 
-#include "../include/GiocatorePc.h" 
-#include "../include/GiocatorePcHuman.h" 
 
 /*
     autore: Leonardo Bertani 
@@ -38,12 +36,11 @@ int main(int argc, char** argv){
     // controllo dell'correttezza argomento e stampa della pagina di benvenuto
     benvenuto(modalita);
 
-    if (checkModalita(modalita) == 0 ){ // modalita computer
-        std::cout << "ss";
-    }
-    else{                               // modalita human
-        std::cout << "s";
-    }
+    //std::vector<Giocatore*> giocatori = creazioneTurni(checkModalita(modalita));
+
+    //std::vector<Casella*> casella = creazioneCaselle();
+
+    stampaTabellone();
     
     std::cout << std::endl << std::endl;
 
