@@ -29,7 +29,7 @@ protected:
     // Tipo di giocatore PC(0), Human (1)
     bool modalita_di_gioco_;
     // Posizione attuale giocatore
-    Casella posizione_attuale_;
+    posizione posizione_attuale_;
 
     //COSTANTI
     // Budget iniziale
@@ -49,6 +49,7 @@ public:
     bool getStato();
     void setStato(bool s);
     bool getModalitaGioco();
+    posizione getPosizione();
 
 
     void controlloCasella(Casella c);

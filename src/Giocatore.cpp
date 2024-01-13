@@ -30,7 +30,7 @@ Giocatore::Giocatore(int id, bool mode)
     id_giocatore_{ id },
     stato_corrente_giocatore_{ kDefaultStato },
     modalita_di_gioco_{ mode },
-    posizione_attuale_{TipoCasella::P}
+    posizione_attuale_{}
     {
         if(!( id>0 && id<5 )) // sostituire con delle costanti casomai
             throw InvalidIdException();
@@ -58,6 +58,8 @@ void Giocatore::setStato(bool s)
 bool Giocatore::getModalitaGioco()
 {   return Giocatore::modalita_di_gioco_; }
 
+posizione Giocatore::getPosizione()
+{   return posizione_attuale_; }
 
 void Giocatore::casellaPartenza()
 {
