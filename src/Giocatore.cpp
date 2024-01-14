@@ -30,10 +30,11 @@ Giocatore::Giocatore(int id, bool mode)
     id_giocatore_{ id },
     stato_corrente_giocatore_{ kDefaultStato },
     modalita_di_gioco_{ mode },
-    posizione_attuale_{}
+    coordXgiocatore{8},
+    coordYGiocatore{'H'}
     {
-        if(!( id>0 && id<5 )) // sostituire con delle costanti casomai
-            throw InvalidIdException();
+        //if(!( id>0 && id<5 )) // sostituire con delle costanti casomai
+        //    throw InvalidIdException();
     }
 
 
@@ -58,8 +59,17 @@ void Giocatore::setStato(bool s)
 bool Giocatore::getModalitaGioco()
 {   return Giocatore::modalita_di_gioco_; }
 
-posizione Giocatore::getPosizione()
-{   return posizione_attuale_; }
+int Giocatore::getCoordXGiocatore()
+{   return Giocatore::coordXgiocatore; }
+
+char Giocatore::getCoordYGiocatore()
+{   return Giocatore::coordYGiocatore; }
+
+void Giocatore::setPosizioneGiocatore(int x, char y)
+{
+    Giocatore::coordXgiocatore = x;
+    Giocatore::coordYGiocatore = y;
+}
 
 void Giocatore::casellaPartenza()
 {
@@ -299,12 +309,12 @@ bool probabilita()
     return 0;
 }
 
-int findMaxPos(Record v[], int from, int to)
+int findMaxPos(Record* v[], int from, int to)
 {
     int pos = from;
-    for(int i=pos+1; i<to; i++)
+    for(int i=pos; i<=to; i++)
     {
-        if( v[i].id >= v[pos].id )
+        if( v[i]->id >= v[pos]->id )
             pos = i;
     }
     return pos;
@@ -313,28 +323,28 @@ int findMaxPos(Record v[], int from, int to)
 std::vector<Giocatore*> creazioneTurni(bool modalita)
 {
     std::vector<Giocatore*> giocatori;
-    Record turni[kDefaultNumeroGiocatori];
+    Record* turni[kDefaultNumeroGiocatori];
     for(int i=0; i<kDefaultNumeroGiocatori; i++)
     {
         int n = lancioDadi();
         bool s;
         // Inizializzo i giocatori, tramite questo if controllo: se la modalità di gioco è human
         // e siamo all'ultimo giocatore lo inizializzo a Human
-            if(modalita && i==kDefaultNumeroGiocatori-1 )
+            if(modalita==1 && i==kDefaultNumeroGiocatori-1 )
                 s = 1;
             else
                 s = 0;
-        Giocatore g(n, s);
-        Record gioc(&g, n);
+        Giocatore* g = new Giocatore(n, s);
+        Record* gioc = new Record(g, n);
         turni[i] = gioc;
     }
 
-    for(int i=1; i<=kDefaultNumeroGiocatori; i++)
+    for(int i=0; i<kDefaultNumeroGiocatori; i++)
     {
-        int maxPos = findMaxPos(turni, i, kDefaultNumeroGiocatori-1);
-        turni[maxPos].g->setId(i);
-        turni[maxPos].id = 0;
-        giocatori.push_back(turni[maxPos].g);
+        int maxPos = findMaxPos(turni, 0, kDefaultNumeroGiocatori-1);
+        turni[maxPos]->g->setId(i+1);
+        turni[maxPos]->id = 0;
+        giocatori.push_back(turni[maxPos]->g);
     }
     return giocatori;
 }

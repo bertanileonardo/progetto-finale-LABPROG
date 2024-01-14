@@ -2,8 +2,6 @@
 #define CASELLA_H
 
 #include <iostream>
-#include <string>
-#include "Giocatore.h"
 
 /*
   autore Leonardo Gasparoni
@@ -48,15 +46,6 @@ enum class CoordY {
   H
 };
 
-struct posizione
-{
-  int x;
-  char y;
-
-  posizione()
-    : x{8}, y{'H'} {}
-};
-
 
 class Casella {
 
@@ -75,7 +64,8 @@ public:
   // Metodi getter, setter e booleani definiti in-class
   int getProprietario() const;
   void setProprietario(int proprietario);
-  posizione getPosizione();
+  int getCoordX();
+  char getCoordY();
   void setCoordX(int x);
   void setCoordY(char y);
   bool isSold() const;
@@ -84,18 +74,19 @@ public:
   void setHasCasa();
   bool hasAlbergo() const;
   void setHasAlbergo();
+  char getTipoChar();
 
-  std::string toString(Giocatore* g);
 
 protected:
   const TipoCasella tipo;
-  posizione pos;
 
 private:
   int proprietario;
   bool venduta;
   bool haCasa;
   bool haAlbergo;
+  int coordY;
+  char coordX;
   const int ACQUISTO_TERRENO;
   const int ACQUISTO_CASA;
   const int MIGLIORAMENTO_ALBERGO;

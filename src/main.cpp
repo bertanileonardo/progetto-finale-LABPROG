@@ -38,11 +38,14 @@ int main(int argc, char** argv){
 
     std::vector<Giocatore*> giocatori = creazioneTurni(checkModalita(modalita));
 
-    std::vector<Casella*> casella = creazioneCaselle();
+    std::vector<Casella*> caselle = creazioneCaselle();
 
-    //stampaTabellone();
-    std::string s="";
-    std::cout<<s+casella[0]->toString(giocatori[0]);
+    stampaTabelloneIniziale(caselle);
+
+    for(int i=0; i<28; i++)
+    {
+        std::cout<<char(caselle[i]->getTipoChar())<<std::endl;
+    }
     
     std::cout << std::endl << std::endl;
 

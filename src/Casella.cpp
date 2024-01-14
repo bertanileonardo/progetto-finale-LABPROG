@@ -102,19 +102,24 @@ void Casella::setProprietario(int proprietario) {
   }
 }
 
-posizione Casella::getPosizione()
+int Casella::getCoordX()
 {
-  return pos;
+  return coordX;
+}
+
+char Casella::getCoordY()
+{
+  return coordY;
 }
 
 void Casella::setCoordX(int x)
 {
-  pos.x = x;
+  coordX = x;
 }
 
 void Casella::setCoordY(char y)
 {
-  pos.y = y;
+  coordY = y;
 }
 
 bool Casella::isSold() const {
@@ -162,13 +167,16 @@ void Casella::setHasAlbergo() {
   }
 }
 
-std::string Casella::toString(Giocatore* g)
+char Casella::getTipoChar()
 {
-  std::string s = ""+static_cast<char>(Casella::getTipo());
-  if(Casella::hasCasa())
-    s+="*";
-  else if(Casella::hasAlbergo())
-    s+="^";
-  if(Casella::getPosizione().x == g->getPosizione().x && Casella::getPosizione().y == g->getPosizione().y )
-    s+=g->getId();
+  if(tipo == TipoCasella::P)
+    return 'P';
+  if(tipo == TipoCasella::_U3164)
+    return ' ';
+  if(tipo == TipoCasella::E)
+    return 'E';
+  if(tipo == TipoCasella::S)
+    return 'S';
+  if(tipo == TipoCasella::L)
+    return 'L';
 }

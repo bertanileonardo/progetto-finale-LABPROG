@@ -17,6 +17,7 @@
 class Giocatore
 {
 
+
 protected:
 
 // VARIABILI OGGETTO
@@ -28,8 +29,9 @@ protected:
     bool stato_corrente_giocatore_;
     // Tipo di giocatore PC(0), Human (1)
     bool modalita_di_gioco_;
-    // Posizione attuale giocatore
-    posizione posizione_attuale_;
+    // Coordinate attuali giocatore
+    int coordXgiocatore;
+    char coordYGiocatore;
 
     //COSTANTI
     // Budget iniziale
@@ -49,7 +51,9 @@ public:
     bool getStato();
     void setStato(bool s);
     bool getModalitaGioco();
-    posizione getPosizione();
+    int getCoordXGiocatore();
+    char getCoordYGiocatore();
+    void setPosizioneGiocatore(int x, char y);
 
 
     void controlloCasella(Casella c);
