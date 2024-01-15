@@ -43,15 +43,14 @@ salvaLog("Ciaooooooooooooooooooooooooooooooooooooooo");
 
     std::vector<Casella*> caselle = creazioneCaselle();
 
-    stampaTabelloneIniziale(caselle);
+    //stampaTabelloneIniziale(caselle);
 
     for(int i=0; i<28; i++)
     {
+        std::cout<<"ciao"<<std::endl;
         std::cout<<char(caselle[i]->getTipoChar())<<std::endl;
     }
 
-    
-    
     std::cout << std::endl << std::endl;
 
     return 0;

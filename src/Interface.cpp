@@ -155,7 +155,7 @@ std::vector<Casella*> creazioneCaselle()
 
     for(int i=0; i<len; i++)
     {
-        caselle[i] = new Casella(TipoCasella::L);
+        caselle[i] = new Casella(TipoCasella::E);
     }
     // Casella Partenza
     caselle[0] = new Casella(TipoCasella::P);
@@ -176,21 +176,28 @@ std::vector<Casella*> creazioneCaselle()
     std::mt19937 g(rd());
     std::shuffle(v.begin(), v.end(), g);
 
-    int counterEconom = 0;
-    int counterStandard = 0;
-    int counterLusso = 0;
+
+    int counterEconom = 1;
+    int counterStandard = 1;
+    int counterLusso = 1;
     int i = 0;
 
     // Caselle Economiche
     while( counterEconom<9 )
     {
         if( !(v[i] == 0 && v[i] == 7 && v[i] == 14 && v[i] == 21) )
-            i++;
-        else
         {
             int pos = v[i];
             caselle[pos] = new Casella(TipoCasella::E);
             counterEconom++;
+            cout<<caselle[pos]->getTipoChar()<<" "<<pos;
+            cout<<endl<<"ciaosis";
+            i++;
+        }
+        else
+        {
+            i++;
+            cout<<"ciao";
         }
     }
 
@@ -198,27 +205,40 @@ std::vector<Casella*> creazioneCaselle()
     while( counterStandard<11 )
     {
         if( !(v[i] == 0 && v[i] == 7 && v[i] == 14 && v[i] == 21) )
-            i++;
-        else
         {
             int pos = v[i];
             caselle[pos] = new Casella(TipoCasella::S);
             counterStandard++;
+            cout<<caselle[pos]->getTipoChar()<<" "<<pos;
+            cout<<endl<<"ciaosis2";
+            i++;
+        }
+        else
+        {
+            i++;
+            cout<<"ciao2";
         }
     }
 
     // Caselle Lusso
-    while( counterEconom<7 )
+    while( counterLusso<7 )
     {
         if( !(v[i] == 0 && v[i] == 7 && v[i] == 14 && v[i] == 21) )
-            i++;
-        else
         {
             int pos = v[i];
-            caselle[pos] = new Casella(TipoCasella::E);
-            counterEconom++;
+            caselle[pos] = new Casella(TipoCasella::L);
+            counterLusso++;
+            cout<<caselle[pos]->getTipoChar()<<" "<<pos;
+            cout<<endl<<"ciaosis4";
+            i++;
+        }
+        else
+        {
+            i++;
+            cout<<"ciao3";
         }
     }
+    
     
     for(int i=0; i<28; i++)
     {
@@ -280,7 +300,7 @@ std::vector<Casella*> creazioneCaselle()
             break;
         }
     }
-
+    
     return caselle;
 }
 
