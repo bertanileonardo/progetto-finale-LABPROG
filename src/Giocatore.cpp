@@ -86,7 +86,7 @@ void Giocatore::setPosizioneGiocatore(int x, char y)
 void Giocatore::casellaPartenza()
 {
     setBudget(Giocatore::budget_giocatore_ + kFioriniPartenza);
-    std::string s = " \00E8 passato dal via e ha ritirato "+std::to_string(kFioriniPartenza)+" \0192 (fiorini)";
+    std::string s = " e' passato dal via e ha ritirato "+std::to_string(kFioriniPartenza)+" (fiorini)";
     salvaLog(binder(Giocatore::getId(), s));
 }
 
@@ -103,7 +103,7 @@ void Giocatore::casellaLaterale(Casella* c)
     std::string s = "e' arrivato alla casella "+casella;
     salvaLog(binder(Giocatore::getId(), s));
 
-    if( !(Giocatore::getModalitaGioco()) )
+    if( Giocatore::getModalitaGioco() == 0 )
     {
         int budg = Giocatore::getBudget();
 

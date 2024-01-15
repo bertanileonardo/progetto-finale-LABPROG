@@ -16,7 +16,7 @@ constexpr static int kDefaultNumeroGiocatori = 4;
 constexpr static int kFioriniPartenza = 20;
 
 // Numero di turni masssimi per partita
-constexpr static int kMaxTurni = 256;
+constexpr static int kMaxTurni = 16;
 
 void show(std::vector<Casella*> caselle, std::vector <Giocatore*> giocatori);
     /* 

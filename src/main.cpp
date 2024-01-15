@@ -49,6 +49,7 @@ int main(int argc, char** argv){
     {
         for(int i=0; i<kDefaultNumeroGiocatori; i++)
         {
+            /*
             if(giocatori[i]->getModalitaGioco() == 1)
             {
                 std::string input;
@@ -62,11 +63,12 @@ int main(int argc, char** argv){
                     show(caselle, giocatori);
                 }
             }
+            */
             int lancio = lancioDadi();
             std::string sLog = "ha tirato i dadi ottenenedo un valor di "+std::to_string(lancio);
             salvaLog(binder(giocatori[i]->getId(), sLog));
-            //int nuovaPos = (giocatori[i]->getIndicePosizione()+lancioDadi())%28;
-            int nuovaPos = 10;
+            int nuovaPos = (giocatori[i]->getIndicePosizione()+lancioDadi())%28;
+            std::cout<<std::endl<<std::endl<<nuovaPos<<std::endl;
             if(nuovaPos<giocatori[i]->getIndicePosizione())
                 giocatori[i]->casellaPartenza();
             giocatori[i]->controlloCasella(caselle[nuovaPos]);
@@ -74,14 +76,13 @@ int main(int argc, char** argv){
         }
 
         contatoreTurni++;
+        std::cout<<std::endl<<contatoreTurni;
         
     } while (contatoreTurni<kMaxTurni && verificaVincitore(giocatori) == -1);
 
     if(verificaVincitore(giocatori) == -1)
         stabilisciVincitore(giocatori);
 
-
-    stampaTabelloneIniziale(caselle);
 
     stampaTabellone(caselle, giocatori);
 
