@@ -1,10 +1,10 @@
-# Monopoly in C++ - Progetto finale laboratorio di programmazione 2023/2024
+![image](https://github.com/bertanileonardo/progetto-finale-LABPROG/assets/73755616/a2b95052-2ca2-4b17-b668-47168adf0b54)# Monopoly in C++ - Progetto finale laboratorio di programmazione 2023/2024
 
 ## Introduzione
 
 Questo progetto è una implementazione, semplificata, del gioco da tavolo Monopoly in C++. Il gioco è include alcune delle regole e meccaniche originali.
 
-![Immagine esempio Monopoly](https://commons.wikimedia.org/wiki/File:BoardGamePatentMagie.png#/media/File:BoardGamePatentMagie.png)
+![Immagine esempio Monopoly](https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/BoardGamePatentMagie.png/800px-BoardGamePatentMagie.png)
 
 ## Istruzioni per l'installazione
 
