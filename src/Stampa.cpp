@@ -1,0 +1,24 @@
+#include "../include/Stampa.h"
+#include <string>
+#include <iostream>
+#include <fstream>
+
+/*
+    autore : Leonardo Bertani
+*/
+
+void salvaLog(const std::string& messaggio) {
+  std::ofstream file_log("log.txt", std::ios::app);
+  if (file_log.is_open()) {
+    file_log << "- " << messaggio << std::endl;
+    file_log.close();
+  } 
+  else {
+    std::cout << "Impossibile aprire il file " << "log.txt" << std::endl;
+  }
+}
+
+std::string binder(int i, std::string& text){
+    std::string messaggio = "- Giocatore " + i + text;
+    return messaggio;
+}

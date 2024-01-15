@@ -4,6 +4,7 @@
 
 #include "../include/Giocatore.h"
 #include "../include/Interface.h"
+#include "../include/Stampa.h"
 
 
 Record& Record::operator=(const Record& r)

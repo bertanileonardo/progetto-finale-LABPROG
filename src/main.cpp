@@ -6,6 +6,7 @@
 #include "../include/Interface.h" 
 #include "../include/Casella.h" 
 #include "../include/Giocatore.h" 
+#include "../include/Stampa.h"
 
 /*
     autore: Leonardo Bertani 
@@ -33,6 +34,8 @@ int main(int argc, char** argv){
         modalita = argv[1];
     }
 
+salvaLog("Ciaooooooooooooooooooooooooooooooooooooooo");
+
     // controllo dell'correttezza argomento e stampa della pagina di benvenuto
     benvenuto(modalita);
 
@@ -46,6 +49,8 @@ int main(int argc, char** argv){
     {
         std::cout<<char(caselle[i]->getTipoChar())<<std::endl;
     }
+
+    
     
     std::cout << std::endl << std::endl;
 

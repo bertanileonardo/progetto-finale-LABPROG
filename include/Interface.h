@@ -12,7 +12,7 @@
 // va bene qua?
 constexpr static int kDefaultNumeroGiocatori = 4;
 
-void show(/**/);
+void show(std::vector<Casella*> caselle, std::vector <Giocatore*> giocatori);
     /* 
         funzione per visualizzare il menù di gioco
         - visualizza tabellone

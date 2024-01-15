@@ -16,13 +16,31 @@
 
 using namespace std;
 
-void show(/**/){}
-    /* 
-        funzione per visualizzare il menù di gioco
-        - visualizza tabellone
-        - visualizza lista terreni/case/alberghi posseduti da ogni giocatore
-        - visualizza l’ammontare di fiorini posseduto da tutti i giocatori
-    */
+void show(std::vector<Casella*> caselle, std::vector <Giocatore*> giocatori){
+    
+    std::cout << "Inserire il numero di riferimento delle informazioni richieste:" << 
+    std::endl << "1 - Tabellone" <<
+    std::endl << "2 - Lista terreni/case/alberghi posseduti" <<
+    std::endl << "3 - Liquidit\00E0" <<
+    std::endl << std::endl << "> ";
+    std::string input;
+    std::cin >> input;
+    if (input == "1"){
+        stampaTabellone(caselle, giocatori);
+    }
+    else if (input == "2"){
+        stampaListaPossedimenti(caselle, giocatori);
+
+    }
+    else if (input == "3"){
+        stampaLiquiditaGiocatori(giocatori);
+    }
+    else {
+        std::cout << "Input errato, si prega di riprovare!" << std::endl;
+        show(caselle,giocatori);
+    }
+
+}
 
 void stampaTabellone(std::vector<Casella*> caselle, std::vector <Giocatore*> giocatori)
 {
@@ -87,7 +105,7 @@ void stampaTabelloneIniziale(std::vector<Casella*> caselle)
 
     for(int i=13, j=22, h=66; i>=8, j<=27, h<=71; i--, j++, h++)
     {
-        cout<<(char)h<<"\t\t"<<toStringCasellaIniziale(caselle[i]);
+        cout<<(char)h<<SPAZIO_TRA_CASELLE<<SPAZIO_TRA_CASELLE<<toStringCasellaIniziale(caselle[i]);
         for(int w=0; w<7; w++)
         {
             cout<<SPAZIO_TRA_CASELLE<<CASELLA_VUOTA;
@@ -96,7 +114,7 @@ void stampaTabelloneIniziale(std::vector<Casella*> caselle)
     }
 
     // Ottava (ultima) riga
-    cout<<"H\t";
+    cout<<"H"<<SPAZIO_TRA_CASELLE;
     for(int i=7; i>=0; i--)
     {
         cout<<SPAZIO_TRA_CASELLE<<toStringCasellaIniziale(caselle[i]);
@@ -137,7 +155,7 @@ std::vector<Casella*> creazioneCaselle()
 
     for(int i=0; i<len; i++)
     {
-        caselle[i] = new Casella(TipoCasella::_U3164);
+        caselle[i] = new Casella(TipoCasella::L);
     }
     // Casella Partenza
     caselle[0] = new Casella(TipoCasella::P);
@@ -151,43 +169,56 @@ std::vector<Casella*> creazioneCaselle()
     v[0] = -1;
     for(int i=1; i<len; i++)
     {
-        if(i==7 || i==14 || i==21)
-            v[i] = 0;
-        else 
-            v[i] = i;
+        v[i] = i;
     }
 
     std::random_device rd;
     std::mt19937 g(rd());
     std::shuffle(v.begin(), v.end(), g);
 
+    int counterEconom = 0;
+    int counterStandard = 0;
+    int counterLusso = 0;
+    int i = 0;
+
     // Caselle Economiche
-    for(int i=1; i<7; i++)
+    while( counterEconom<9 )
     {
-        if(i!=7)
+        if( !(v[i] == 0 && v[i] == 7 && v[i] == 14 && v[i] == 21) )
+            i++;
+        else
         {
-            int pos = v.at(i);
+            int pos = v[i];
             caselle[pos] = new Casella(TipoCasella::E);
+            counterEconom++;
         }
     }
 
     // Caselle Standard
-    for(int i=10; i<21; i++)
+    while( counterStandard<11 )
     {
-        if(i!=14)
+        if( !(v[i] == 0 && v[i] == 7 && v[i] == 14 && v[i] == 21) )
+            i++;
+        else
         {
-            int pos = v.at(i);
+            int pos = v[i];
             caselle[pos] = new Casella(TipoCasella::S);
+            counterStandard++;
         }
     }
 
     // Caselle Lusso
-    for(int i=22; i<28; i++)
+    while( counterEconom<7 )
     {
-        int pos = v.at(i);
-        caselle[pos] = new Casella(TipoCasella::L);
+        if( !(v[i] == 0 && v[i] == 7 && v[i] == 14 && v[i] == 21) )
+            i++;
+        else
+        {
+            int pos = v[i];
+            caselle[pos] = new Casella(TipoCasella::E);
+            counterEconom++;
+        }
     }
-
     
     for(int i=0; i<28; i++)
     {

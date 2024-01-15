@@ -120,7 +120,7 @@ int lancioDadi();
         ovvero la somma del risultato del lancio di 2 dadi
     */
 
-int findMaxPos(Record v[], int from, int to);
+int findMaxPos(Record* v[], int from, int to);
 /*
     trova la posizione dell'oggetto Record con il valore id più alto
     all'interno di un array di struct Record
