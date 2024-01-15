@@ -9,8 +9,14 @@
 #include "Giocatore.h"
 #include <string>
 
-// va bene qua?
+// Numero giocatori di default
 constexpr static int kDefaultNumeroGiocatori = 4;
+
+// Ammontare di fiorini ritirato passando dalla Partenza
+constexpr static int kFioriniPartenza = 20;
+
+// Numero di turni masssimi per partita
+constexpr static int kMaxTurni = 256;
 
 void show(std::vector<Casella*> caselle, std::vector <Giocatore*> giocatori);
     /* 

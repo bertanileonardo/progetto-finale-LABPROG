@@ -56,13 +56,13 @@ public:
     void setPosizioneGiocatore(int x, char y);
 
 
-    void controlloCasella(Casella c);
+    void controlloCasella(Casella* c);
     /*
         effettua il controllo sul tipo della casella e chiama le funzioni
         dedicate in base ad esso
     */
 
-    void casellaLaterale(Casella c);
+    void casellaLaterale(Casella* c);
     /*
         gestisce il caso in cui un giocatore capita su una casella laterale 
         (economica, standard, lusso)
@@ -74,6 +74,12 @@ public:
         (ritira 20 fiorini)
     */
 
+   void casellaAngolare(Casella* c);
+   /*
+        gestisce il caso in cui un giocatore capita su una casella Angolare
+        (nulla ma salva nel file di log)
+   */
+
 
     // CLASSI ECCEZIONI
     class InvalidIdException{};
@@ -84,9 +90,12 @@ public:
     Giocatore(const Giocatore& g) = delete;
     // Operatore di copia disabilitato
     Giocatore& operator=(const Giocatore& g) = delete;
-  
+    // Distuttore
+    //~Giocatore();
 };
+    
 
+    
 struct Record
 {
     Giocatore* g;

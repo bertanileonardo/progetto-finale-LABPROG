@@ -19,6 +19,6 @@ void salvaLog(const std::string& messaggio) {
 }
 
 std::string binder(int i, std::string& text){
-    std::string messaggio = "- Giocatore " + i + text;
+    std::string messaggio = "Giocatore " + std::to_string(i) + " "+text;
     return messaggio;
 }

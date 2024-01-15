@@ -44,17 +44,19 @@ void show(std::vector<Casella*> caselle, std::vector <Giocatore*> giocatori){
 
 void stampaTabellone(std::vector<Casella*> caselle, std::vector <Giocatore*> giocatori)
 {
-    const string SPAZIO_INIZIALE = "     ";
-    const string SPAZIO_TRA_NUM = "      ";
-    const string SPAZIO_TRA_CASELLE = "  ";
-    const string CASELLA_VUOTA = "   ";
+    const string SPAZIO_INIZIALE = "       "; // 7 caratteri vuoti
+    const string SPAZIO_TRA_NUM = "        "; // 8 caratteri vuoti
+    const string SPAZIO_TRA_CASELLE = "    "; // 4 caratteri vuoti
+    const string CASELLA_VUOTA = "     "; // 5 caratteri vuoti
 
+
+    cout<<endl<<endl;
     // Prima Riga
     cout<<SPAZIO_INIZIALE<<1<<SPAZIO_TRA_NUM<<2<<SPAZIO_TRA_NUM<<3<<SPAZIO_TRA_NUM<<4<<SPAZIO_TRA_NUM
     <<5<<SPAZIO_TRA_NUM<<6<<SPAZIO_TRA_NUM<<7<<SPAZIO_TRA_NUM<<8<<SPAZIO_TRA_CASELLE<<endl<<endl;
 
     // Seconda Riga
-    cout<<"A"<<SPAZIO_TRA_CASELLE;
+    cout<<"A";
     for(int i=14; i<=21; i++)
     {
         cout<<SPAZIO_TRA_CASELLE<<toStringCasella(caselle[i], giocatori);
@@ -65,16 +67,16 @@ void stampaTabellone(std::vector<Casella*> caselle, std::vector <Giocatore*> gio
 
     for(int i=13, j=22, h=66; i>=8, j<=27, h<=71; i--, j++, h++)
     {
-        cout<<(char)h<<SPAZIO_TRA_CASELLE<<toStringCasella(caselle[i], giocatori);
-        for(int w=0; w<7; w++)
+        cout<<endl<<(char)h<<SPAZIO_TRA_CASELLE<<toStringCasella(caselle[i], giocatori);
+        for(int w=0; w<6; w++)
         {
             cout<<SPAZIO_TRA_CASELLE<<CASELLA_VUOTA;
         }
-        cout<<SPAZIO_TRA_CASELLE<<toStringCasella(caselle[j], giocatori);
+        cout<<SPAZIO_TRA_CASELLE<<toStringCasella(caselle[j], giocatori)<<endl;
     }
 
     // Ottava (ultima) riga
-    cout<<"H"<<SPAZIO_TRA_CASELLE;
+    cout<<endl<<"H";
     for(int i=7; i>=0; i--)
     {
         cout<<SPAZIO_TRA_CASELLE<<toStringCasella(caselle[i], giocatori);
@@ -84,17 +86,20 @@ void stampaTabellone(std::vector<Casella*> caselle, std::vector <Giocatore*> gio
 
 void stampaTabelloneIniziale(std::vector<Casella*> caselle)
 {
-    const string SPAZIO_INIZIALE = "     ";
-    const string SPAZIO_TRA_NUM = "      ";
-    const string SPAZIO_TRA_CASELLE = "  ";
-    const string CASELLA_VUOTA = "   ";
+    const string SPAZIO_TRA_NUM = "      "; // 6 caratteri vuoti
+    const string SPAZIO_TRA_CASELLE = "    "; // 4 caratteri vuoti
+    const string CASELLA_VUOTA = "   "; // 3 caratteri vuoti
+
+    cout<<endl<<endl;
 
     // Prima Riga
-    cout<<SPAZIO_INIZIALE<<1<<SPAZIO_TRA_NUM<<2<<SPAZIO_TRA_NUM<<3<<SPAZIO_TRA_NUM<<4<<SPAZIO_TRA_NUM
+    cout<<SPAZIO_TRA_NUM<<1<<SPAZIO_TRA_NUM<<2<<SPAZIO_TRA_NUM<<3<<SPAZIO_TRA_NUM<<4<<SPAZIO_TRA_NUM
     <<5<<SPAZIO_TRA_NUM<<6<<SPAZIO_TRA_NUM<<7<<SPAZIO_TRA_NUM<<8<<SPAZIO_TRA_CASELLE<<endl<<endl;
 
+    
+
     // Seconda Riga
-    cout<<"A"<<SPAZIO_TRA_CASELLE;
+    cout<<"A";
     for(int i=14; i<=21; i++)
     {
         cout<<SPAZIO_TRA_CASELLE<<toStringCasellaIniziale(caselle[i]);
@@ -105,21 +110,22 @@ void stampaTabelloneIniziale(std::vector<Casella*> caselle)
 
     for(int i=13, j=22, h=66; i>=8, j<=27, h<=71; i--, j++, h++)
     {
-        cout<<(char)h<<SPAZIO_TRA_CASELLE<<SPAZIO_TRA_CASELLE<<toStringCasellaIniziale(caselle[i]);
-        for(int w=0; w<7; w++)
+        cout<<endl<<(char)h<<SPAZIO_TRA_CASELLE<<toStringCasellaIniziale(caselle[i]);
+        for(int w=0; w<6; w++)
         {
             cout<<SPAZIO_TRA_CASELLE<<CASELLA_VUOTA;
         }
-        cout<<SPAZIO_TRA_CASELLE<<toStringCasellaIniziale(caselle[j]);
+        cout<<SPAZIO_TRA_CASELLE<<toStringCasellaIniziale(caselle[j])<<endl;
     }
 
     // Ottava (ultima) riga
-    cout<<"H"<<SPAZIO_TRA_CASELLE;
+    cout<<endl<<"H";
     for(int i=7; i>=0; i--)
     {
         cout<<SPAZIO_TRA_CASELLE<<toStringCasellaIniziale(caselle[i]);
     }
     cout<<endl;
+
 }
     
 
@@ -162,7 +168,7 @@ std::vector<Casella*> creazioneCaselle()
     caselle[0] = new Casella(TipoCasella::P);
 
     std::vector<int> v(len);
-    v[0] = -1;
+    v[0] = 0;
     for(int i=1; i<len; i++)
     {
         v[i] = i;
@@ -181,7 +187,7 @@ std::vector<Casella*> creazioneCaselle()
     // Caselle Economiche
     while( counterEconom<9 )
     {
-        if( !(v[i] == 0 && v[i] == 7 && v[i] == 14 && v[i] == 21) )
+        if( !(v[i] == 0 || v[i] == 7 || v[i] == 14 || v[i] == 21) )
         {
             int pos = v[i];
             caselle[pos] = new Casella(TipoCasella::E);
@@ -195,7 +201,7 @@ std::vector<Casella*> creazioneCaselle()
     // Caselle Standard
     while( counterStandard<11 )
     {
-        if( !(v[i] == 0 && v[i] == 7 && v[i] == 14 && v[i] == 21) )
+        if( !(v[i] == 0 || v[i] == 7 || v[i] == 14 || v[i] == 21) )
         {
             int pos = v[i];
             caselle[pos] = new Casella(TipoCasella::S);
@@ -209,7 +215,7 @@ std::vector<Casella*> creazioneCaselle()
     // Caselle Lusso
     while( counterLusso<7 )
     {
-        if( !(v[i] == 0 && v[i] == 7 && v[i] == 14 && v[i] == 21) )
+        if( !(v[i] == 0 || v[i] == 7 || v[i] == 14 || v[i] == 21) )
         {
             int pos = v[i];
             caselle[pos] = new Casella(TipoCasella::L);
@@ -321,7 +327,8 @@ void benvenuto(std::string modalita){
 
 std::string toStringCasella(Casella* c, vector<Giocatore*> giocatori)
 {
-    std::string s = "|"+c->getTipoChar();
+    int counter = 0;
+    std::string s = "|"+std::string(1,c->getTipoChar());
     if(c->hasCasa())
         s+="*";
     else if(c->hasAlbergo())
@@ -332,9 +339,30 @@ std::string toStringCasella(Casella* c, vector<Giocatore*> giocatori)
     for(int i=0; i<kDefaultNumeroGiocatori; i++)
     {
         if(c->getCoordX() == giocatori[i]->getCoordXGiocatore() && c->getCoordY() == giocatori[i]->getCoordYGiocatore() )
-            s+=giocatori[i]->getId();
+        {
+            char num;
+            switch(giocatori[i]->getId())
+            {
+            case 1:
+                num = '1';
+                break;
+            case 2:
+                num = '2';
+                break;
+            case 3:
+                num = '3';
+                break;
+            case 4:
+                num = '4';
+                break;
+            }
+
+            s+=std::string(1,num);
+        }
         else
-        s+=" ";
+            counter++;
+        if(counter==4)
+            s+=" ";
     }
     s+="|";
     return s;
@@ -342,7 +370,6 @@ std::string toStringCasella(Casella* c, vector<Giocatore*> giocatori)
 
 std::string toStringCasellaIniziale(Casella* c)
 {
-    std::string s = "|"+c->getTipoChar();
-    s+="|";
+    std::string s = "|"+std::string(1,c->getTipoChar())+"|";
     return s;
 }

@@ -53,6 +53,8 @@ public:
   // Costruttore generale che inizializza il tipo della casella
   Casella(TipoCasella tipo);
   TipoCasella getTipo() const;
+  // Distruttore disabilitato
+  ~Casella() = delete;
 
   // Metodi per ottenere il costo di acquisto di una casella
   int getCostoTerrenoPerTipo() const;

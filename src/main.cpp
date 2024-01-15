@@ -33,8 +33,9 @@ int main(int argc, char** argv){
     else{
         modalita = argv[1];
     }
+    
 
-salvaLog("Ciaooooooooooooooooooooooooooooooooooooooo");
+    salvaLog("Ciaooooooooooooooooooooooooooooooooooooooo");
 
     // controllo dell'correttezza argomento e stampa della pagina di benvenuto
     benvenuto(modalita);
@@ -43,13 +44,25 @@ salvaLog("Ciaooooooooooooooooooooooooooooooooooooooo");
 
     std::vector<Casella*> caselle = creazioneCaselle();
 
+    /*t contatore = 0;
+    do
+    {
+        
+        contatore++;
+        
+    } while (contatore<kMaxTurni);*/
+
+    giocatori[1]->setPosizioneGiocatore(1, 'A');
+    giocatori[2]->setPosizioneGiocatore(8, 'A');
+
+    giocatori[1]->casellaAngolare(caselle[8]);
+    giocatori[2]->controlloCasella(caselle[16]);
+
+
     stampaTabelloneIniziale(caselle);
 
-    for(int i=0; i<28; i++)
-    {
-        std::cout<<"ciao"<<std::endl;
-        std::cout<<char(caselle[i]->getTipoChar())<<std::endl;
-    }
+    stampaTabellone(caselle, giocatori);
+
 
     std::cout << std::endl << std::endl;
 

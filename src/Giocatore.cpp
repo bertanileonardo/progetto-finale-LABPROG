@@ -74,25 +74,39 @@ void Giocatore::setPosizioneGiocatore(int x, char y)
 
 void Giocatore::casellaPartenza()
 {
-    setBudget(Giocatore::budget_giocatore_ + 20);
+    setBudget(Giocatore::budget_giocatore_ + kFioriniPartenza);
+    std::string s = " \00E8 passato dal via e ha ritirato "+std::to_string(kFioriniPartenza)+" \0192 (fiorini)";
+    salvaLog(binder(Giocatore::getId(), s));
 }
 
-void Giocatore::casellaLaterale(Casella c)
+void Giocatore::casellaAngolare(Casella* c)
 {
+    std::string casella = ""+std::to_string(c->getCoordX())+std::string(1, c->getCoordY());
+    std::string s = "e' arrivato alla casella "+casella;
+    salvaLog(binder(Giocatore::getId(), s));
+}
+
+void Giocatore::casellaLaterale(Casella* c)
+{
+    std::string casella = ""+std::to_string(c->getCoordX())+std::string(1, c->getCoordY());
+    std::string s = "e' arrivato alla casella "+casella;
+    salvaLog(binder(Giocatore::getId(), s));
+
     if( !(Giocatore::getModalitaGioco()) )
     {
         int budg = Giocatore::getBudget();
 
         // Casella senza proprietario
-        if( !(c.isSold()) )
+        if( !(c->isSold()) )
         {
-            int prezzo = c.getCostoTerrenoPerTipo();
+            int prezzo = c->getCostoTerrenoPerTipo();
             if( (budg-prezzo)>=0 && probabilita() == 1 )
             {
-                c.setProprietario(Giocatore::getId());
-                c.setSold();
+                c->setProprietario(Giocatore::getId());
+                c->setSold();
                 Giocatore::setBudget(budg-prezzo);
-                
+                std::string sLog = "ha aquistato il terreno "+casella;
+                salvaLog(binder(Giocatore::getId(), sLog));
             }
             else return;
         }
@@ -100,65 +114,81 @@ void Giocatore::casellaLaterale(Casella c)
         else
         {
             // Di proprietà del giocatore in turno
-            if( c.getProprietario() == Giocatore::getId() )
+            if( c->getProprietario() == Giocatore::getId() )
             {
-                if( !(c.hasCasa()) )
+                if( !(c->hasCasa()) )
                 {
-                    int prezzo = c.getCostoCasaPerTipo();
+                    int prezzo = c->getCostoCasaPerTipo();
                     if( (budg-prezzo)>=0 && probabilita() == 1 )
                     {
-                        c.setHasCasa();
+                        c->setHasCasa();
                         Giocatore::setBudget( budg - prezzo);
-
+                        std::string sLog = "ha costruito una casa sul terreno "+casella;
+                        salvaLog(binder(Giocatore::getId(), sLog));
                     }
                 }
-                else if (c.hasCasa())
+                else if (c->hasCasa())
                 {
-                    int prezzo = c.getCostoMiglioramentoAlbergoPerTipo();
+                    int prezzo = c->getCostoMiglioramentoAlbergoPerTipo();
                     if( (budg-prezzo)>=0 && probabilita() == 1 )
                     {
-                        c.setHasAlbergo();
+                        c->setHasAlbergo();
                         Giocatore::setBudget( budg - prezzo);
+                        std::string sLog = "ha migliorato una casa in albergo sul terreno "+casella;
+                        salvaLog(binder(Giocatore::getId(), sLog));
                     }
                 }
-                // OPZIONALE aggiungere opzione quando ha l'albergo e quindi non fa nulla
+                else
+                {
+                    std::cout<<"Possiedi gi\00E0 un albergo su questo terreno"<<std::endl;
+                }
+                // AGGIUNTO CI STA? aggiungere opzione quando ha l'albergo e quindi non fa nulla
 
             }
             // Di proprietà di un altro giocatore
             else
             {
-                if( !(c.hasCasa()) )
+                if( !(c->hasCasa()) )
                 {
-                    int prezzo = c.getCostoTerrenoPerTipo();
-                    if( (Giocatore::getBudget() - prezzo)>=0 )
-                        Giocatore::setBudget(Giocatore::getBudget() - prezzo);
-                    else
-                    {
-                        Giocatore::setStato(0);
-                        Giocatore::setBudget(0);
-                    }
+                    std::string sLog ="non paga nulla in quanto sulla casella " + casella +
+                    " non sono presenti costruzioni";
+                    salvaLog(binder(Giocatore::getId(), sLog));
                 }
-                else if (c.hasCasa())
+                else if (c->hasCasa())
                 {
-                    int prezzo = c.getCostoPernottamentoCasaPerTipo();
+                    int prezzo = c->getCostoPernottamentoCasaPerTipo();
                     if( (Giocatore::getBudget() - prezzo)>=0 )
-                        Giocatore::setBudget(Giocatore::getBudget() - prezzo);
+                    {
+                        Giocatore::setBudget(Giocatore::getBudget() - prezzo);std::string sLog = "ha pagato" + std::to_string(prezzo) + " fiorini a giocatore " +
+                        std::to_string(c->getProprietario()) + "per pernottamento presso la casella " + casella;
+                        salvaLog(binder(Giocatore::getId(), sLog));
+                    }
+
                     else
                     {
                         Giocatore::setStato(0);
                         Giocatore::setBudget(0);
+                        std::string sLog = "e' stato eliminato in quanto non ha pi\00F9 fiorini.";
+                        salvaLog(binder(Giocatore::getId(), sLog));
                     }
                 }
                 
                 else // Ha l'albergo
                 {
-                    int prezzo = c.getCostoPernottamentoAlbergoPerTipo();
+                    int prezzo = c->getCostoPernottamentoAlbergoPerTipo();
                     if( (Giocatore::getBudget() - prezzo)>=0 )
+                    {
                         Giocatore::setBudget(Giocatore::getBudget() - prezzo);
+                        std::string sLog = "ha pagato" + std::to_string(prezzo) + " fiorini a giocatore " +
+                        std::to_string(c->getProprietario()) + "per pernottamento presso la casella " + casella;
+                        salvaLog(binder(Giocatore::getId(), sLog));
+                    }
                     else
                     {
                         Giocatore::setStato(0);
                         Giocatore::setBudget(0);
+                        std::string sLog = "e' stato eliminato in quanto non ha pi\00F9 fiorini.";
+                        salvaLog(binder(Giocatore::getId(), sLog));
                     }
                 }
                 
@@ -170,7 +200,7 @@ void Giocatore::casellaLaterale(Casella c)
         int budg = Giocatore::getBudget();
 
         // Casella senza proprietario
-        if( !(c.isSold()) )
+        if( !(c->isSold()) )
         {
             char risposta;
             do
@@ -182,12 +212,15 @@ void Giocatore::casellaLaterale(Casella c)
 
             if(risposta=='S' || risposta=='s')
             {
-                int prezzo = c.getCostoTerrenoPerTipo();
+                int prezzo = c->getCostoTerrenoPerTipo();
                 if( (budg-prezzo)>=0 )
                 {
-                    c.setProprietario(Giocatore::getId());
-                    c.setSold();
+                    c->setProprietario(Giocatore::getId());
+                    c->setSold();
                     Giocatore::setBudget(budg-prezzo);
+                    Giocatore::setBudget(budg-prezzo);
+                    std::string sLog = "ha aquistato il terreno "+casella;
+                    salvaLog(binder(Giocatore::getId(), sLog));
                 }
                 // else senza soldi? --> come agire
             }
@@ -196,10 +229,10 @@ void Giocatore::casellaLaterale(Casella c)
         else
         {
             // Di proprietà del giocatore in turno
-            if( c.getProprietario() == Giocatore::getId() )
+            if( c->getProprietario() == Giocatore::getId() )
             {
                 std::cout<<"Casella di tua proprietà, ";
-                if( !(c.hasCasa()) )
+                if( !(c->hasCasa()) )
                 {
                     char risposta;
                     do
@@ -209,15 +242,17 @@ void Giocatore::casellaLaterale(Casella c)
                     }
                     while( !(risposta!='N' || risposta!='n' || risposta!='S' || risposta!='s') );
 
-                    int prezzo = c.getCostoCasaPerTipo();
+                    int prezzo = c->getCostoCasaPerTipo();
                     if( (budg-prezzo)>=0 )
                     {
-                        c.setHasCasa();
+                        c->setHasCasa();
                         Giocatore::setBudget( budg - prezzo);
+                        std::string sLog = "ha costruito una casa sul terreno "+casella;
+                        salvaLog(binder(Giocatore::getId(), sLog));
                     }
                     // else senza soldi
                 }
-                else if (c.hasCasa())
+                else if (c->hasCasa())
                 {
                     char risposta;
                     do
@@ -227,51 +262,66 @@ void Giocatore::casellaLaterale(Casella c)
                     }
                     while( !(risposta!='N' || risposta!='n' || risposta!='S' || risposta!='s') );
                     
-                    int prezzo = c.getCostoMiglioramentoAlbergoPerTipo();
-                    if( (budg-prezzo)>=0 && probabilita() == 1 )
+                    int prezzo = c->getCostoMiglioramentoAlbergoPerTipo();
+                    if( (budg-prezzo)>=0)
                     {
-                        c.setHasAlbergo();
+                        c->setHasAlbergo();
                         Giocatore::setBudget( budg - prezzo);
+                        std::string sLog = "ha migliorato una casa in albergo sul terreno "+casella;
+                        salvaLog(binder(Giocatore::getId(), sLog));
                     }
                 }
-                // OPZIONALE aggiungere opzione quando ha l'albergo e quindi non fa nulla
+                else
+                {
+                    std::cout<<"Possiedi gi\00E0 un albergo su questo terreno"<<std::endl;
+                }
+                // AGGIUNTO aggiungere opzione quando ha l'albergo e quindi non fa nulla
 
             }
             // Di proprietà di un altro giocatore
             else
             {
-                if( !(c.hasCasa()) )
+                if( !(c->hasCasa()) )
                 {
-                    int prezzo = c.getCostoTerrenoPerTipo();
-                    if( (Giocatore::getBudget() - prezzo)>=0 )
-                        Giocatore::setBudget(Giocatore::getBudget() - prezzo);
-                    else
-                    {
-                        Giocatore::setStato(0);
-                        Giocatore::setBudget(0);
-                    }
+                    std::string sLog ="non paga nulla in quanto sulla casella " + casella +
+                    " non sono presenti costruzioni";
+                    salvaLog(binder(Giocatore::getId(), sLog));
                 }
-                else if (c.hasCasa())
+                else if (c->hasCasa())
                 {
-                    int prezzo = c.getCostoPernottamentoCasaPerTipo();
+                    int prezzo = c->getCostoPernottamentoCasaPerTipo();
                     if( (Giocatore::getBudget() - prezzo)>=0 )
+                    {
                         Giocatore::setBudget(Giocatore::getBudget() - prezzo);
+                        std::string sLog = "ha pagato" + std::to_string(prezzo) + " fiorini a giocatore " +
+                        std::to_string(c->getProprietario()) + "per pernottamento presso la casella " + casella;
+                        salvaLog(binder(Giocatore::getId(), sLog));                        
+                    }
                     else
                     {
                         Giocatore::setStato(0);
                         Giocatore::setBudget(0);
+                        std::string sLog = "e' stato eliminato in quanto non ha pi\00F9 fiorini.";
+                        salvaLog(binder(Giocatore::getId(), sLog));
                     }
                 }
                 
                 else // Ha l'albergo
                 {
-                    int prezzo = c.getCostoPernottamentoAlbergoPerTipo();
+                    int prezzo = c->getCostoPernottamentoAlbergoPerTipo();
                     if( (Giocatore::getBudget() - prezzo)>=0 )
+                    {
                         Giocatore::setBudget(Giocatore::getBudget() - prezzo);
+                        std::string sLog = "ha pagato" + std::to_string(prezzo) + " fiorini a giocatore " +
+                        std::to_string(c->getProprietario()) + "per pernottamento presso la casella " + casella;
+                        salvaLog(binder(Giocatore::getId(), sLog));
+                    }
                     else
                     {
                         Giocatore::setStato(0);
                         Giocatore::setBudget(0);
+                        std::string sLog = "e' stato eliminato in quanto non ha pi\00F9 fiorini.";
+                        salvaLog(binder(Giocatore::getId(), sLog));
                     }
                 }
                 
@@ -281,10 +331,11 @@ void Giocatore::casellaLaterale(Casella c)
 }
 
 
-void Giocatore::controlloCasella(Casella c)
+void Giocatore::controlloCasella(Casella* c)
 {
-    if( c.getTipo() == TipoCasella::_U3164 );
-    else if( c.getTipo() == TipoCasella::P )
+    if( c->getTipo() == TipoCasella::_U3164 )
+        Giocatore::casellaAngolare(c);
+    else if( c->getTipo() == TipoCasella::P )
         Giocatore::casellaPartenza();
     else
         Giocatore::casellaLaterale(c);
