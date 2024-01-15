@@ -4,7 +4,7 @@
 #include <fstream>
 
 /*
-    autore : Leonardo Bertani
+    autore : Leonardo Gasparoni
 */
 
 void salvaLog(const std::string& messaggio) {

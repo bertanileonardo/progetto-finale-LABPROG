@@ -108,10 +108,10 @@ void Giocatore::casellaLaterale(Casella* c)
         int budg = Giocatore::getBudget();
 
         // Casella senza proprietario
-        if( !(c->isSold()) )
+        if( !(c->isSold()) && probabilita() == 1)
         {
             int prezzo = c->getCostoTerrenoPerTipo();
-            if( (budg-prezzo)>=0 && probabilita() == 1 )
+            if( (budg-prezzo)>=0)
             {
                 c->setProprietario(Giocatore::getId());
                 c->setSold();
@@ -119,7 +119,6 @@ void Giocatore::casellaLaterale(Casella* c)
                 std::string sLog = "ha aquistato il terreno "+casella;
                 salvaLog(binder(Giocatore::getId(), sLog));
             }
-            else return;
         }
 
         else
@@ -127,7 +126,7 @@ void Giocatore::casellaLaterale(Casella* c)
             // Di proprietà del giocatore in turno
             if( c->getProprietario() == Giocatore::getId() )
             {
-                if( !(c->hasCasa()) )
+                if( !(c->hasCasa())  && probabilita() == 1 )
                 {
                     int prezzo = c->getCostoCasaPerTipo();
                     if( (budg-prezzo)>=0 && probabilita() == 1 )
@@ -151,7 +150,7 @@ void Giocatore::casellaLaterale(Casella* c)
                 }
                 else
                 {
-                    std::cout<<"Possiedi gi\00E0 un albergo su questo terreno"<<std::endl;
+                    std::cout<<std::endl<<"Possiedi gia' un albergo su questo terreno"<<std::endl;
                 }
                 // AGGIUNTO CI STA? aggiungere opzione quando ha l'albergo e quindi non fa nulla
 
@@ -170,8 +169,8 @@ void Giocatore::casellaLaterale(Casella* c)
                     int prezzo = c->getCostoPernottamentoCasaPerTipo();
                     if( (Giocatore::getBudget() - prezzo)>=0 )
                     {
-                        Giocatore::setBudget(Giocatore::getBudget() - prezzo);std::string sLog = "ha pagato" + std::to_string(prezzo) + " fiorini a giocatore " +
-                        std::to_string(c->getProprietario()) + "per pernottamento presso la casella " + casella;
+                        Giocatore::setBudget(Giocatore::getBudget() - prezzo);std::string sLog = "ha pagato " + std::to_string(prezzo) + " fiorini a giocatore " +
+                        std::to_string(c->getProprietario()) + " per pernottamento presso la casella " + casella;
                         salvaLog(binder(Giocatore::getId(), sLog));
                     }
 
@@ -179,7 +178,7 @@ void Giocatore::casellaLaterale(Casella* c)
                     {
                         Giocatore::setStato(0);
                         Giocatore::setBudget(0);
-                        std::string sLog = "e' stato eliminato in quanto non ha pi\00F9 fiorini.";
+                        std::string sLog = "e' stato eliminato in quanto non ha piu' fiorini.";
                         salvaLog(binder(Giocatore::getId(), sLog));
                     }
                 }
@@ -190,15 +189,15 @@ void Giocatore::casellaLaterale(Casella* c)
                     if( (Giocatore::getBudget() - prezzo)>=0 )
                     {
                         Giocatore::setBudget(Giocatore::getBudget() - prezzo);
-                        std::string sLog = "ha pagato" + std::to_string(prezzo) + " fiorini a giocatore " +
-                        std::to_string(c->getProprietario()) + "per pernottamento presso la casella " + casella;
+                        std::string sLog = "ha pagato " + std::to_string(prezzo) + " fiorini a giocatore " +
+                        std::to_string(c->getProprietario()) + " per pernottamento presso la casella " + casella;
                         salvaLog(binder(Giocatore::getId(), sLog));
                     }
                     else
                     {
                         Giocatore::setStato(0);
                         Giocatore::setBudget(0);
-                        std::string sLog = "e' stato eliminato in quanto non ha pi\00F9 fiorini.";
+                        std::string sLog = "e' stato eliminato in quanto non ha piu' fiorini.";
                         salvaLog(binder(Giocatore::getId(), sLog));
                     }
                 }
@@ -228,7 +227,6 @@ void Giocatore::casellaLaterale(Casella* c)
                 {
                     c->setProprietario(Giocatore::getId());
                     c->setSold();
-                    Giocatore::setBudget(budg-prezzo);
                     Giocatore::setBudget(budg-prezzo);
                     std::string sLog = "ha aquistato il terreno "+casella;
                     salvaLog(binder(Giocatore::getId(), sLog));
@@ -284,7 +282,7 @@ void Giocatore::casellaLaterale(Casella* c)
                 }
                 else
                 {
-                    std::cout<<"Possiedi gi\00E0 un albergo su questo terreno"<<std::endl;
+                    std::cout<<std::endl<<"Possiedi gia' un albergo su questo terreno"<<std::endl;
                 }
                 // AGGIUNTO aggiungere opzione quando ha l'albergo e quindi non fa nulla
 
@@ -304,15 +302,15 @@ void Giocatore::casellaLaterale(Casella* c)
                     if( (Giocatore::getBudget() - prezzo)>=0 )
                     {
                         Giocatore::setBudget(Giocatore::getBudget() - prezzo);
-                        std::string sLog = "ha pagato" + std::to_string(prezzo) + " fiorini a giocatore " +
-                        std::to_string(c->getProprietario()) + "per pernottamento presso la casella " + casella;
+                        std::string sLog = "ha pagato " + std::to_string(prezzo) + " fiorini a giocatore " +
+                        std::to_string(c->getProprietario()) + " per pernottamento presso la casella " + casella;
                         salvaLog(binder(Giocatore::getId(), sLog));                        
                     }
                     else
                     {
                         Giocatore::setStato(0);
                         Giocatore::setBudget(0);
-                        std::string sLog = "e' stato eliminato in quanto non ha pi\00F9 fiorini.";
+                        std::string sLog = "e' stato eliminato in quanto non ha piu' fiorini.";
                         salvaLog(binder(Giocatore::getId(), sLog));
                     }
                 }
@@ -323,15 +321,15 @@ void Giocatore::casellaLaterale(Casella* c)
                     if( (Giocatore::getBudget() - prezzo)>=0 )
                     {
                         Giocatore::setBudget(Giocatore::getBudget() - prezzo);
-                        std::string sLog = "ha pagato" + std::to_string(prezzo) + " fiorini a giocatore " +
-                        std::to_string(c->getProprietario()) + "per pernottamento presso la casella " + casella;
+                        std::string sLog = "ha pagato " + std::to_string(prezzo) + " fiorini a giocatore " +
+                        std::to_string(c->getProprietario()) + " per pernottamento presso la casella " + casella;
                         salvaLog(binder(Giocatore::getId(), sLog));
                     }
                     else
                     {
                         Giocatore::setStato(0);
                         Giocatore::setBudget(0);
-                        std::string sLog = "e' stato eliminato in quanto non ha pi\00F9 fiorini.";
+                        std::string sLog = "e' stato eliminato in quanto non ha piu' fiorini.";
                         salvaLog(binder(Giocatore::getId(), sLog));
                     }
                 }
@@ -344,6 +342,9 @@ void Giocatore::casellaLaterale(Casella* c)
 
 void Giocatore::controlloCasella(Casella* c)
 {
+    std::string casella = ""+std::to_string(c->getCoordX())+std::string(1, c->getCoordY());
+    std::string s = " e' arrivato alla casella "+casella;
+    std::cout<<"\n\nGiocatore " + std::to_string(Giocatore::getId()) + s;
     if( c->getTipo() == TipoCasella::_U3164 )
         Giocatore::casellaAngolare(c);
     else if( c->getTipo() == TipoCasella::P )
@@ -363,10 +364,10 @@ int lancioDadi(){
     return dado1 + dado2; // come da richiesta restituisco la somma delle uscite dei 2 dadi
 }
 
-bool probabilita()
+int probabilita()
 {
     int array[4] = {0, 1, 0, 0};
-    int n = 3*rand();
+    int n = rand()%4;
     if( array[n] == 1)
         return 1;
     return 0;
@@ -387,20 +388,31 @@ std::vector<Giocatore*> creazioneTurni(bool modalita)
 {
     std::vector<Giocatore*> giocatori;
     Record* turni[kDefaultNumeroGiocatori];
-    for(int i=0; i<kDefaultNumeroGiocatori; i++)
-    {
-        int n = lancioDadi();
-        bool s;
-        // Inizializzo i giocatori, tramite questo if controllo: se la modalità di gioco è human
-        // e siamo all'ultimo giocatore lo inizializzo a Human
-            if(modalita==1 && i==kDefaultNumeroGiocatori-1 )
-                s = 1;
-            else
-                s = 0;
-        Giocatore* g = new Giocatore(n, s);
-        Record* gioc = new Record(g, n);
-        turni[i] = gioc;
+
+    int punti[kDefaultNumeroGiocatori];
+    for (int i=0; i<kDefaultNumeroGiocatori; i++){
+        punti[i]=lancioDadi();
     }
+    for (int i=0; i<kDefaultNumeroGiocatori; i++){     // controllo che non ci siano tiri ad uguale punteggio, se così ritiro i dadi per i giocatori interessati        
+        for (int j = i+1; j < kDefaultNumeroGiocatori; j++){
+            if(punti[i]==punti[j]){
+                punti[i] = lancioDadi();
+                punti[j] = lancioDadi();
+            }
+        }            
+    }
+    bool s;
+    // Inizializzo i giocatori, tramite questo if controllo: se la modalità di gioco è human
+    // e siamo all'ultimo giocatore lo inizializzo a Human
+    for (int i = 0; i < kDefaultNumeroGiocatori; i++){
+        if(modalita==1 && i==kDefaultNumeroGiocatori-1 )
+            s = 1;        
+        else
+            s = 0; 
+         Giocatore* g = new Giocatore(punti[i], s);
+        Record* gioc = new Record(g, punti[i]);
+        turni[i] = gioc;  
+    }   
 
     for(int i=0; i<kDefaultNumeroGiocatori; i++)
     {

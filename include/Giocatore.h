@@ -122,7 +122,7 @@ int generaNumeroCasuale();
     */
 
 
-bool probabilita();
+int probabilita();
 /*
         ritorna 1 con la probabilità del 25% (1 su 4) 
 */

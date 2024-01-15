@@ -21,7 +21,7 @@ void show(std::vector<Casella*> caselle, std::vector <Giocatore*> giocatori){
     std::cout << "Inserire il numero di riferimento delle informazioni richieste:" << 
     std::endl << "1 - Tabellone" <<
     std::endl << "2 - Lista terreni/case/alberghi posseduti" <<
-    std::endl << "3 - Liquidit\00E0" <<
+    std::endl << "3 - Liquidita'" <<
     std::endl << std::endl << "> ";
     std::string input;
     std::cin >> input;

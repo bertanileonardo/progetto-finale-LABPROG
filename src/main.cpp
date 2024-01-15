@@ -10,7 +10,7 @@
 #include "../include/Stampa.h"
 
 /*
-    autori: Leonardo Bertani, Lorenzo Vanon, Leonardo Gasparoni 
+    autori: Leonardo Gasparoni 
 */
 
 int main(int argc, char** argv){
@@ -45,44 +45,55 @@ int main(int argc, char** argv){
     stampaTabelloneIniziale(caselle);
 
     int contatoreTurni = 0;
+    
     do
     {
         for(int i=0; i<kDefaultNumeroGiocatori; i++)
         {
-            /*
-            if(giocatori[i]->getModalitaGioco() == 1)
+            if(giocatori[i]->getStato() == 0);
+            else
             {
-                std::string input;
-                do{
-                    std::cout<<std::endl<<"Digita 'show' per vedere le opzioni di visualizzazione, digita 'N' per andare avanti"<<std::endl;
-                    std::cin>>input;
-                } while(input!="show" && input!="N" && input!= "n");
-
-                if(input=="show")
+                if(giocatori[i]->getModalitaGioco() == 1)
                 {
-                    show(caselle, giocatori);
+                    std::string input;
+                    do{
+                        std::cout<<std::endl<<"Digita 'show' per vedere le opzioni di visualizzazione, digita 'N' per andare avanti"<<std::endl;
+                        std::cin>>input;
+                    } while(input!="show" && input!="N" && input!= "n");
+
+                    if(input=="show")
+                    {
+                        show(caselle, giocatori);
+                    }
                 }
+                
+                int lancio = lancioDadi();
+                std::string sLog = "ha tirato i dadi ottenenedo un valor di "+std::to_string(lancio);
+                salvaLog(binder(giocatori[i]->getId(), sLog));
+                int nuovaPos = (giocatori[i]->getIndicePosizione()+lancioDadi())%28;
+                if(nuovaPos<giocatori[i]->getIndicePosizione())
+                    giocatori[i]->casellaPartenza();
+                giocatori[i]->controlloCasella(caselle[nuovaPos]);
+                std::string sBg = std::to_string(giocatori[i]->getBudget());
+                salvaLog(binder(giocatori[i]->getId(), sBg));
+                giocatori[i]->setIndicePosizione(nuovaPos);
+                giocatori[i]->setPosizioneGiocatore(caselle[nuovaPos]->getCoordX(), caselle[nuovaPos]->getCoordY());
             }
-            */
-            int lancio = lancioDadi();
-            std::string sLog = "ha tirato i dadi ottenenedo un valor di "+std::to_string(lancio);
-            salvaLog(binder(giocatori[i]->getId(), sLog));
-            int nuovaPos = (giocatori[i]->getIndicePosizione()+lancioDadi())%28;
-            std::cout<<std::endl<<std::endl<<nuovaPos<<std::endl;
-            if(nuovaPos<giocatori[i]->getIndicePosizione())
-                giocatori[i]->casellaPartenza();
-            giocatori[i]->controlloCasella(caselle[nuovaPos]);
-            giocatori[i]->setIndicePosizione(nuovaPos);
         }
 
         contatoreTurni++;
-        std::cout<<std::endl<<contatoreTurni;
         
     } while (contatoreTurni<kMaxTurni && verificaVincitore(giocatori) == -1);
 
+    int idVincitore = 0;
     if(verificaVincitore(giocatori) == -1)
-        stabilisciVincitore(giocatori);
+        idVincitore = stabilisciVincitore(giocatori);
+    else
+        idVincitore = verificaVincitore(giocatori);
+    std::cout<<std::endl<<"Il vincitore e' Giocatore "<<std::to_string(idVincitore);
 
+    std::string sWinner = "e' il vincitore";
+    salvaLog(binder(idVincitore, sWinner));
 
     stampaTabellone(caselle, giocatori);
 
