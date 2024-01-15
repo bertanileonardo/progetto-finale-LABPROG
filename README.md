@@ -18,6 +18,7 @@ Questo progetto è una implementazione, semplificata, del gioco da tavolo Monopo
 `cmake --build ./`
 
 5. Esegui il codice
-`./a`
+`./a <NomeModalità>`
+dove con `<NomeModalità>` utilizzare `computer` per una partita tra computer per un massimo di 1024 turni, oppure `human` per una partita con un giocatore umano
 
 __Questo è un piccolo progetto, speriamo vi piaccia__
