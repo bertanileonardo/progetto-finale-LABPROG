@@ -43,7 +43,7 @@ salvaLog("Ciaooooooooooooooooooooooooooooooooooooooo");
 
     std::vector<Casella*> caselle = creazioneCaselle();
 
-    //stampaTabelloneIniziale(caselle);
+    stampaTabelloneIniziale(caselle);
 
     for(int i=0; i<28; i++)
     {

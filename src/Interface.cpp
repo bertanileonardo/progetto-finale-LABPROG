@@ -155,15 +155,11 @@ std::vector<Casella*> creazioneCaselle()
 
     for(int i=0; i<len; i++)
     {
-        caselle[i] = new Casella(TipoCasella::E);
+        // Inizializzo tutte le caselle con Tipo Angolare, dividendole tra economiche, standard e lusso rimarrano le 3+1 (partenzas) angolari di regola
+        caselle[i] = new Casella(TipoCasella::_U3164);
     }
     // Casella Partenza
     caselle[0] = new Casella(TipoCasella::P);
-
-    //Caselle Angolari
-    caselle[7] = new Casella(TipoCasella::_U3164);
-    caselle[14] = new Casella(TipoCasella::_U3164);
-    caselle[21] = new Casella(TipoCasella::_U3164);
 
     std::vector<int> v(len);
     v[0] = -1;
@@ -190,15 +186,10 @@ std::vector<Casella*> creazioneCaselle()
             int pos = v[i];
             caselle[pos] = new Casella(TipoCasella::E);
             counterEconom++;
-            cout<<caselle[pos]->getTipoChar()<<" "<<pos;
-            cout<<endl<<"ciaosis";
             i++;
         }
         else
-        {
             i++;
-            cout<<"ciao";
-        }
     }
 
     // Caselle Standard
@@ -209,15 +200,10 @@ std::vector<Casella*> creazioneCaselle()
             int pos = v[i];
             caselle[pos] = new Casella(TipoCasella::S);
             counterStandard++;
-            cout<<caselle[pos]->getTipoChar()<<" "<<pos;
-            cout<<endl<<"ciaosis2";
             i++;
         }
         else
-        {
             i++;
-            cout<<"ciao2";
-        }
     }
 
     // Caselle Lusso
@@ -228,15 +214,10 @@ std::vector<Casella*> creazioneCaselle()
             int pos = v[i];
             caselle[pos] = new Casella(TipoCasella::L);
             counterLusso++;
-            cout<<caselle[pos]->getTipoChar()<<" "<<pos;
-            cout<<endl<<"ciaosis4";
             i++;
         }
         else
-        {
             i++;
-            cout<<"ciao3";
-        }
     }
     
     
