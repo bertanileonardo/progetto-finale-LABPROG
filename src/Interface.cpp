@@ -18,7 +18,7 @@ using namespace std;
 
 void show(std::vector<Casella*> caselle, std::vector <Giocatore*> giocatori){
     
-    std::cout << "Inserire il numero di riferimento delle informazioni richieste:" << 
+    std::cout << std::endl << "Inserire il numero di riferimento delle informazioni richieste:" << 
     std::endl << "1 - Tabellone" <<
     std::endl << "2 - Lista terreni/case/alberghi posseduti" <<
     std::endl << "3 - Liquidita'" <<
@@ -146,11 +146,11 @@ void stampaListaPossedimenti(std::vector<Casella*> caselle, std::vector<Giocator
 } 
 
 void stampaLiquiditaGiocatori(std::vector<Giocatore*> giocatori){
-    std::cout << "\tLiquidit\00E0 giocatori: " << std::endl << std::endl;
+    std::cout << "\tLiquidita' giocatori: " << std::endl << std::endl;
     int i=0;
     for (Giocatore* giocatore : giocatori){
         i++;
-        std::cout << "\tGiocatore  " << i << " : " << giocatore -> getBudget() << "\0192" << std::endl;
+        std::cout << "\tGiocatore  " << i << " : " << giocatore -> getBudget() << " fiorini" << std::endl;
         }
 }
 

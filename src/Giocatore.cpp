@@ -86,7 +86,7 @@ void Giocatore::setPosizioneGiocatore(int x, char y)
 void Giocatore::casellaPartenza()
 {
     setBudget(Giocatore::budget_giocatore_ + kFioriniPartenza);
-    std::string s = " e' passato dal via e ha ritirato "+std::to_string(kFioriniPartenza)+" (fiorini)";
+    std::string s = "e' passato dal via e ha ritirato "+std::to_string(kFioriniPartenza)+" (fiorini)";
     salvaLog(binder(Giocatore::getId(), s));
 }
 
@@ -215,7 +215,7 @@ void Giocatore::casellaLaterale(Casella* c)
             char risposta;
             do
             {
-                std::cout<<"Casella senza proprietario: desideri acquistarla? (S = si, N = no)\nRisposta: ";
+                std::cout<<std::endl<<"Casella senza proprietario: desideri acquistarla? (S = si, N = no)\nRisposta: ";
                 std::cin>>risposta;
             }
             while( !(risposta!='N' || risposta!='n' || risposta!='S' || risposta!='s') );

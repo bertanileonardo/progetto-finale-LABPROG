@@ -57,7 +57,7 @@ int main(int argc, char** argv){
                 {
                     std::string input;
                     do{
-                        std::cout<<std::endl<<"Digita 'show' per vedere le opzioni di visualizzazione, digita 'N' per andare avanti"<<std::endl;
+                        std::cout<<std::endl<<std::endl<<"Digita 'show' per vedere le opzioni di visualizzazione, digita 'N' per andare avanti"<<std::endl;
                         std::cin>>input;
                     } while(input!="show" && input!="N" && input!= "n");
 
@@ -74,8 +74,8 @@ int main(int argc, char** argv){
                 if(nuovaPos<giocatori[i]->getIndicePosizione())
                     giocatori[i]->casellaPartenza();
                 giocatori[i]->controlloCasella(caselle[nuovaPos]);
-                std::string sBg = std::to_string(giocatori[i]->getBudget());
-                salvaLog(binder(giocatori[i]->getId(), sBg));
+                // std::string sBg = std::to_string(giocatori[i]->getBudget());
+                // salvaLog(binder(giocatori[i]->getId(), sBg));
                 giocatori[i]->setIndicePosizione(nuovaPos);
                 giocatori[i]->setPosizioneGiocatore(caselle[nuovaPos]->getCoordX(), caselle[nuovaPos]->getCoordY());
             }
