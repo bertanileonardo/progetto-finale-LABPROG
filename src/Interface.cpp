@@ -373,3 +373,36 @@ std::string toStringCasellaIniziale(Casella* c)
     std::string s = "|"+std::string(1,c->getTipoChar())+"|";
     return s;
 }
+
+int verificaVincitore(std::vector<Giocatore*> giocatori)
+{
+    int counter = 0;
+    int idVincitore = 0;
+    for(int i=0; i<kDefaultNumeroGiocatori; i++)
+    {
+        if(giocatori[i]->getStato() == 0)
+            counter++;
+        else
+            idVincitore = giocatori[i]->getId();
+    }
+    if(counter==3)
+        return idVincitore;
+    else
+        return -1;
+}
+
+int stabilisciVincitore(std::vector<Giocatore*> giocatori)
+{
+    int idVincitore = 0;
+    int maxBudget = 0;
+    for(int i=0; i<kDefaultNumeroGiocatori; i++)
+    {
+        if(giocatori[i]->getBudget()>=maxBudget)
+        {
+            idVincitore = giocatori[i]->getId();
+            maxBudget = giocatori[i]->getBudget();
+        }
+    }
+
+    return idVincitore;
+}

@@ -64,4 +64,14 @@ void benvenuto(std::string);
 std::string toStringCasella(Casella* c, std::vector<Giocatore*> giocatori);
 std::string toStringCasellaIniziale(Casella* c);
 
+int verificaVincitore(std::vector<Giocatore*> giocatori);
+    /*
+        Verifica se tra i giocatori vi è un vincitore
+    */
+int stabilisciVincitore(std::vector<Giocatore*> giocatori);
+    /*
+        Stabilisce se, raggiunto il numero max di turni
+        c'è un vincitore
+    */
+
 #endif //Interface_H

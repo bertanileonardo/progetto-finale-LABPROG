@@ -31,8 +31,9 @@ Giocatore::Giocatore(int id, bool mode)
     id_giocatore_{ id },
     stato_corrente_giocatore_{ kDefaultStato },
     modalita_di_gioco_{ mode },
-    coordXgiocatore{8},
-    coordYGiocatore{'H'}
+    coord_x_giocatore{8},
+    coord_y_giocatore{'H'},
+    indice_posizione{0}
     {
         //if(!( id>0 && id<5 )) // sostituire con delle costanti casomai
         //    throw InvalidIdException();
@@ -61,15 +62,20 @@ bool Giocatore::getModalitaGioco()
 {   return Giocatore::modalita_di_gioco_; }
 
 int Giocatore::getCoordXGiocatore()
-{   return Giocatore::coordXgiocatore; }
+{   return Giocatore::coord_x_giocatore; }
 
 char Giocatore::getCoordYGiocatore()
-{   return Giocatore::coordYGiocatore; }
+{   return Giocatore::coord_y_giocatore; }
+
+int Giocatore::getIndicePosizione()
+{
+    return Giocatore::indice_posizione;
+}
 
 void Giocatore::setPosizioneGiocatore(int x, char y)
 {
-    Giocatore::coordXgiocatore = x;
-    Giocatore::coordYGiocatore = y;
+    Giocatore::coord_x_giocatore = x;
+    Giocatore::coord_y_giocatore = y;
 }
 
 void Giocatore::casellaPartenza()
@@ -336,7 +342,7 @@ void Giocatore::controlloCasella(Casella* c)
     if( c->getTipo() == TipoCasella::_U3164 )
         Giocatore::casellaAngolare(c);
     else if( c->getTipo() == TipoCasella::P )
-        Giocatore::casellaPartenza();
+        return;
     else
         Giocatore::casellaLaterale(c);
 }

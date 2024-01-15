@@ -3,13 +3,14 @@
 #include <ctime>
 #include <iostream>
 #include <vector>
+#include <chrono>
 #include "../include/Interface.h" 
 #include "../include/Casella.h" 
 #include "../include/Giocatore.h" 
 #include "../include/Stampa.h"
 
 /*
-    autore: Leonardo Bertani 
+    autori: Leonardo Bertani, Lorenzo Vanon, Leonardo Gasparoni 
 */
 
 int main(int argc, char** argv){
@@ -33,9 +34,6 @@ int main(int argc, char** argv){
     else{
         modalita = argv[1];
     }
-    
-
-    salvaLog("Ciaooooooooooooooooooooooooooooooooooooooo");
 
     // controllo dell'correttezza argomento e stampa della pagina di benvenuto
     benvenuto(modalita);
@@ -44,19 +42,42 @@ int main(int argc, char** argv){
 
     std::vector<Casella*> caselle = creazioneCaselle();
 
-    /*t contatore = 0;
+    stampaTabelloneIniziale(caselle);
+
+    int contatoreTurni = 0;
     do
     {
-        
-        contatore++;
-        
-    } while (contatore<kMaxTurni);*/
+        for(int i=0; i<kDefaultNumeroGiocatori; i++)
+        {
+            if(giocatori[i]->getModalitaGioco() == 1)
+            {
+                std::string input;
+                do{
+                    std::cout<<std::endl<<"Digita 'show' per vedere le opzioni di visualizzazione, digita 'N' per andare avanti"<<std::endl;
+                    std::cin>>input;
+                } while(input!="show" && input!="N");
 
-    giocatori[1]->setPosizioneGiocatore(1, 'A');
-    giocatori[2]->setPosizioneGiocatore(8, 'A');
+                if(input=="show")
+                {
+                    show(caselle, giocatori);
+                }
 
-    giocatori[1]->casellaAngolare(caselle[8]);
-    giocatori[2]->controlloCasella(caselle[16]);
+            }
+            int lancio = lancioDadi();
+            std::string sLog = "ha tirato i dadi ottenenedo un valor di "+std::to_string(lancio);
+            salvaLog(binder(giocatori[i]->getId(), sLog));
+            int nuovaPos = (giocatori[i]->getIndicePosizione()+lancioDadi())%28;
+            if(nuovaPos<giocatori[i]->getIndicePosizione())
+                giocatori[i]->casellaPartenza();
+            giocatori[i]->controlloCasella(caselle[nuovaPos]);
+        }
+
+        contatoreTurni++;
+        
+    } while (contatoreTurni<kMaxTurni && verificaVincitore(giocatori) == -1);
+
+    if(verificaVincitore(giocatori) == -1)
+        stabilisciVincitore(giocatori);
 
 
     stampaTabelloneIniziale(caselle);

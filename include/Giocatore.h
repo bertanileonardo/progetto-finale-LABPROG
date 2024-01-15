@@ -30,8 +30,10 @@ protected:
     // Tipo di giocatore PC(0), Human (1)
     bool modalita_di_gioco_;
     // Coordinate attuali giocatore
-    int coordXgiocatore;
-    char coordYGiocatore;
+    int coord_x_giocatore;
+    char coord_y_giocatore;
+    // Indice posizione
+    int indice_posizione;
 
     //COSTANTI
     // Budget iniziale
@@ -54,6 +56,7 @@ public:
     int getCoordXGiocatore();
     char getCoordYGiocatore();
     void setPosizioneGiocatore(int x, char y);
+    int getIndicePosizione();
 
 
     void controlloCasella(Casella* c);
