@@ -4,7 +4,7 @@
 
 Questo progetto è una implementazione, semplificata, del gioco da tavolo Monopoly in C++. Il gioco è include alcune delle regole e meccaniche originali.
 
-![Immagine esempio Monopoly]([http://url/to/img.png](https://commons.wikimedia.org/wiki/File:BoardGamePatentMagie.png#/media/File:BoardGamePatentMagie.png))
+![Immagine esempio Monopoly](https://commons.wikimedia.org/wiki/File:BoardGamePatentMagie.png#/media/File:BoardGamePatentMagie.png)
 
 ## Istruzioni per l'installazione
 
