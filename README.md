@@ -1,4 +1,4 @@
-![image](https://github.com/bertanileonardo/progetto-finale-LABPROG/assets/73755616/a2b95052-2ca2-4b17-b668-47168adf0b54)# Monopoly in C++ - Progetto finale laboratorio di programmazione 2023/2024
+# Monopoly in C++ - Progetto finale laboratorio di programmazione 2023/2024
 
 ## Introduzione
 
