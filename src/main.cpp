@@ -55,21 +55,22 @@ int main(int argc, char** argv){
                 do{
                     std::cout<<std::endl<<"Digita 'show' per vedere le opzioni di visualizzazione, digita 'N' per andare avanti"<<std::endl;
                     std::cin>>input;
-                } while(input!="show" && input!="N");
+                } while(input!="show" && input!="N" && input!= "n");
 
                 if(input=="show")
                 {
                     show(caselle, giocatori);
                 }
-
             }
             int lancio = lancioDadi();
             std::string sLog = "ha tirato i dadi ottenenedo un valor di "+std::to_string(lancio);
             salvaLog(binder(giocatori[i]->getId(), sLog));
-            int nuovaPos = (giocatori[i]->getIndicePosizione()+lancioDadi())%28;
+            //int nuovaPos = (giocatori[i]->getIndicePosizione()+lancioDadi())%28;
+            int nuovaPos = 10;
             if(nuovaPos<giocatori[i]->getIndicePosizione())
                 giocatori[i]->casellaPartenza();
             giocatori[i]->controlloCasella(caselle[nuovaPos]);
+            giocatori[i]->setIndicePosizione(nuovaPos);
         }
 
         contatoreTurni++;

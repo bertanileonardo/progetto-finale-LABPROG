@@ -72,6 +72,11 @@ int Giocatore::getIndicePosizione()
     return Giocatore::indice_posizione;
 }
 
+void Giocatore::setIndicePosizione(int n)
+{
+    Giocatore::indice_posizione = n;
+}
+
 void Giocatore::setPosizioneGiocatore(int x, char y)
 {
     Giocatore::coord_x_giocatore = x;

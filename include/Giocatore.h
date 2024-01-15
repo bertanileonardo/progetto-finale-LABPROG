@@ -57,6 +57,7 @@ public:
     char getCoordYGiocatore();
     void setPosizioneGiocatore(int x, char y);
     int getIndicePosizione();
+    void setIndicePosizione(int n);
 
 
     void controlloCasella(Casella* c);
